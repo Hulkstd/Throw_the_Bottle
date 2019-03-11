@@ -9,13 +9,16 @@ public class TestScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Rig.AddForceAtPosition(Vector2.one * 5, Vector2.down * 3,ForceMode2D.Impulse);
-        Rig.AddForce(Vector2.right * 20, ForceMode2D.Impulse);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Rig.AddForceAtPosition(Vector2.one * 25, Vector2.down * 3, ForceMode2D.Impulse);
+            Rig.AddForce(Vector2.right * 100, ForceMode2D.Impulse);
+        }
     }
 }
