@@ -880,6 +880,7 @@ GameObject:
   - component: {fileID: 548695721}
   - component: {fileID: 548695720}
   - component: {fileID: 548695719}
+  - component: {fileID: 548695723}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -974,6 +975,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &548695723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548695718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2a24d2a9d294e4fb445a4a2cd0819e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &632635645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3587,7 +3600,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1970774296}
   - component: {fileID: 1970774298}
-  - component: {fileID: 1970774297}
   m_Layer: 5
   m_Name: VolumeSlider
   m_TagString: Untagged
@@ -3617,18 +3629,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5.7, y: -134.2}
   m_SizeDelta: {x: 280, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1970774297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970774295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db2a24d2a9d294e4fb445a4a2cd0819e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1970774298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3676,12 +3676,12 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 548695718}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 548695723}
+        m_MethodName: SetVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
