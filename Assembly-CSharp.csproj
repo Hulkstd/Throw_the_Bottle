@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Teahyeong\Scripts\DragInput.cs" />
     <Compile Include="Assets\Teahyeong\TestScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/HulkSTD/Documents/ThrowWaterBottle/Throw_The_Bottle/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
