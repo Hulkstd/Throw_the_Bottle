@@ -60,7 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\OptionTable.cs" />
+    <Compile Include="Assets\Script\Menu\MenuTable.cs" />
+    <Compile Include="Assets\Script\Option\OptionTable.cs" />
+    <Compile Include="Assets\Script\Option\SettingsMenu.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/user/Documents/GitHub/Throw_the_Bottle/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
