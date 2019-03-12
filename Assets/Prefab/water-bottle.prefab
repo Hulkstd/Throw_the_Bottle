@@ -11872,12 +11872,12 @@ GameObject:
   - component: {fileID: 5972711510178569788}
   - component: {fileID: 5972711510178569789}
   - component: {fileID: 5972711510178569730}
+  - component: {fileID: 5972711510178569731}
   - component: {fileID: 5972711510178569728}
   - component: {fileID: 5972711510178569791}
   - component: {fileID: 5972711510178569790}
   - component: {fileID: 5972711510178569785}
   - component: {fileID: 5972711510178569784}
-  - component: {fileID: 2361613991709668580}
   m_Layer: 0
   m_Name: water-bottle
   m_TagString: Untagged
@@ -11969,6 +11969,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5972711510178569731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972711510178569729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f507375759e9964aadc9f0653de3b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rig: {fileID: 5972711510178569730}
 --- !u!61 &5972711510178569728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12099,19 +12112,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &2361613991709668580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5972711510178569729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165e0b16b0c668944b281bff91311d73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Rig: {fileID: 5972711510178569730}
 --- !u!1 &6189680689264336977
 GameObject:
   m_ObjectHideFlags: 0
