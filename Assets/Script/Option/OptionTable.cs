@@ -12,6 +12,6 @@ public class OptionTable : MonoBehaviour
 
     public void ChangeGameScene()
     {
-        SceneManager.LoadScene("SeungGeol/Option");
+        SceneManager.LoadScene("Option");
     }
 }
