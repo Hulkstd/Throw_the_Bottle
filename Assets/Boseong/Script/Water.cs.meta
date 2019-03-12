@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Boseong/Script/Water.cs.meta
-guid: 2ccdee1f843e3dd4987de7c8cb6e00e3
-=======
-guid: 6a1976bd971b47f4296612eaf93a2d55
->>>>>>> ddd524151df1f678d14c12263411c0f98ee82692:Assets/Teahyeong/Scripts/DragInput.cs.meta
+guid: b0011c130b343e1488023abec91f812f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
