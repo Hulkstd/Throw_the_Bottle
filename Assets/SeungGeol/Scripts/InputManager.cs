@@ -105,7 +105,7 @@ public class InputManager : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.black;
         Gizmos.DrawLine(Bottle.position + -Bottle.up * BottleCol.bounds.extents.y,
             Bottle.position + -Bottle.up * BottleCol.bounds.extents.y + -Bottle.up);
         Gizmos.DrawLine(Bottle.position + Bottle.up * BottleCol.bounds.extents.y,
