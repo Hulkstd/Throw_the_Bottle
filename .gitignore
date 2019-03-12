@@ -3,7 +3,24 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+<<<<<<< HEAD
+<<<<<<<< HEAD:.gitignore
+[Ll]ogs/
+
+# Layout
+*.dwlt
+
+# Never ignore Asset meta data
+![Aa]ssets/**/*.meta
+
+# Uncomment this line if you wish to ignore the asset store tools plugin
+# [Aa]ssets/AssetStoreTools*
+========
 Assets/AssetStoreTools*
+>>>>>>>> origin/Jinu:gitignore
+=======
+Assets/AssetStoreTools*
+>>>>>>> origin/Jinu
 
 # Visual Studio cache directory
 .vs/
