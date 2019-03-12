@@ -5,6 +5,8 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
 
     [SerializeField]
+    private Animator ohAnim;
+    [SerializeField]
     private Transform Bottle;
     [SerializeField]
     private Collider2D BottleCol;
@@ -88,11 +90,11 @@ public class InputManager : MonoBehaviour {
 
         if (Physics2D.Raycast(Bottle.position + -Bottle.up * BottleCol.bounds.extents.y, -Bottle.up, 0.1f, 1 << 8))
         {
-            Debug.Log("ohhhh");
+            ohAnim.Play("Ohhhh");
         }
         else if (Physics2D.Raycast(Bottle.position + Bottle.up * BottleCol.bounds.extents.y, Bottle.up, 0.1f, 1 << 8))
         {
-            Debug.Log("ohhhh");
+            ohAnim.Play("Ohhhh");
         }
 
         //Debug.Log("Reset");
