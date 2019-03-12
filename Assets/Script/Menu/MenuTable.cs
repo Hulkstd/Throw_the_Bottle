@@ -12,6 +12,6 @@ public class MenuTable : MonoBehaviour
 
     public void ChangeGameScene()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("SeungGeol/Menu");
     }
 }

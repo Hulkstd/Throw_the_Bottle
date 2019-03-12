@@ -68,3 +68,17 @@ AudioMixerSnapshotController:
   m_FloatValues:
     600c8d0ed2d922e47bf8283690688aff: -80
   m_TransitionOverrides: {}
+--- !u!244 &244704589893499366
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1b7ee4ca66dea864e9402243b286f76e
+  m_EffectName: Send
+  m_MixLevel: 4551e84a0d9d9244cb3994f430cc58eb
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
