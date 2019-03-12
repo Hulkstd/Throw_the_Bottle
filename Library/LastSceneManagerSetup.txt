@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Teahyeong/Scene/TestScene.unity
+- path: Assets/SeungGeol/Test.unity
   isLoaded: 1
   isActive: 1
