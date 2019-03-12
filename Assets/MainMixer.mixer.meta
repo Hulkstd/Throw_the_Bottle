@@ -1,13 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/SeungGeol/Test.unity.meta
-guid: 0c02e10843a793544a6b34b6415d584e
-DefaultImporter:
-=======
-guid: 70a928e7966ed7a4fa6d2068b742f587
+guid: e948fc9946ca7114bba2cd3120879b54
 NativeFormatImporter:
->>>>>>> origin/Jinu:Assets/MainMixer.mixer.meta
   externalObjects: {}
-  mainObjectFileID: 24100000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
