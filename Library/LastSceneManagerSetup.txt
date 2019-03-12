@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Teahyeong/Scene/TestScene.unity
-  isLoaded: 1
-  isActive: 1
