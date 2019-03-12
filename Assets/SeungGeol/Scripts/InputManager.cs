@@ -62,7 +62,7 @@ public class InputManager : MonoBehaviour {
         if (vec.sqrMagnitude > 275000.0f)
         {
             vec.Normalize();
-            vec *= 500.0f;
+            vec *= 800.0f;
         }
 
         BottleRd2d.AddForceAtPosition(vec, Bottle.position + Vector3.down * BottleCol.bounds.size.y);

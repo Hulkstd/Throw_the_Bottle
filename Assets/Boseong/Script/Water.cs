@@ -22,6 +22,7 @@ public class Water : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             gameObject.SetActive(false);
+            // transform.SetParent(null);
             Debug.Log(gameObject.name);
         }
     }
