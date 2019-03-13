@@ -12,6 +12,10 @@ public class InputManager : MonoBehaviour {
     private Collider2D BottleCol;
     [SerializeField]
     private Rigidbody2D BottleRd2d;
+    [SerializeField]
+    private Transform watersParent;
+
+    private static List<GameObject> droppedWaters = new List<GameObject>();
     private Vector2 startPos;
     private Vector2 endPos;
     private bool isThrowable = true;
@@ -19,7 +23,7 @@ public class InputManager : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        
+        droppedWaters.Capacity = 100;
 	}
 	
     void Update()
@@ -104,7 +108,23 @@ public class InputManager : MonoBehaviour {
         BottleRd2d.velocity = Vector2.zero;
         BottleRd2d.angularVelocity = 0.0f;
         Bottle.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+
+        foreach (GameObject g in droppedWaters)
+        {
+            if (!g.gameObject.activeSelf)
+            {
+                g.SetActive(true);
+                g.transform.localPosition = Vector3.zero;
+            }
+        }
+
+        droppedWaters.Clear();
         isThrowable = true;
+    }
+
+    public static void AddDropped(GameObject water)
+    {
+        droppedWaters.Add(water);
     }
 
     void OnDrawGizmos()
