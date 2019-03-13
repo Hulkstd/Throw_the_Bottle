@@ -19,11 +19,13 @@ public class Water : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
+            InputManager.AddDropped(gameObject);
             gameObject.SetActive(false);
             // transform.SetParent(null);
             Debug.Log(gameObject.name);
+            
         }
     }
 
