@@ -60,3 +60,10 @@
 
 TODO)
  스테이지 양산, scene추가
+ 스테이지 UI 추후 참조(디스코드 3인방)
+
+CREDIT)
+ 티몬소리, 티몬티움체 글꼴 : https://brunch.co.kr/@creative/32
+ 배경음 및 효과음 1 : https://www.soundjay.com/
+ 배경음 및 효과음 2 : https://soundeffect-lab.info/
+ 일부 사진 : https://pixabay.com/ko/
