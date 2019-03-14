@@ -41,7 +41,6 @@ public class SceneChanger : MonoBehaviour
             image.rectTransform.localScale = Vector2.one * 20;
             image.color = new Color(1,1,1,0);
             image.raycastTarget = false;
-            DontDestroyOnLoad(image);
 
             return sceneChanger;
         }
@@ -54,11 +53,11 @@ public class SceneChanger : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
-        image.color = new Color(1, 1, 1, 1);
+        image.color = new Color(0, 0, 0, 0);
         while (image.color.a >= 0)
         {
             image.enabled = true;
-            image.color -= new Color(1, 1, 1, fadeSpeed * Time.deltaTime);
+            image.color -= new Color(0, 0, 0, fadeSpeed * Time.deltaTime);
             yield return new WaitForSeconds(0.05f);
         }
     }
@@ -66,10 +65,10 @@ public class SceneChanger : MonoBehaviour
     private IEnumerator FadeOut(string SceneName)
     {
         image.enabled = true;
-        image.color = new Color(1, 1, 1, 0);
+        image.color = new Color(0, 0, 0, 0);
         while (image.color.a <= 1)
         {
-            image.color += new Color(1, 1, 1, fadeSpeed * Time.deltaTime);
+            image.color += new Color(0, 0, 0, fadeSpeed * Time.deltaTime);
             yield return new WaitForSeconds(0.05f);
         }
 
@@ -85,7 +84,7 @@ public class SceneChanger : MonoBehaviour
         image.enabled = true;
         while (image.color.a <= 1)
         {
-            image.color += new Color(1, 1, 1, fadeSpeed * Time.deltaTime);
+            image.color += new Color(0, 0, 0, fadeSpeed * Time.deltaTime);
             yield return new WaitForSeconds(0.05f);
         }
     }
