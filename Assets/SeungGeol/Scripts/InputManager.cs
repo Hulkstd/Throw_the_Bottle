@@ -18,17 +18,21 @@ public class InputManager : MonoBehaviour
     private Transform watersParent;
     [SerializeField]
     private GameObject hand;
+    [SerializeField]
+    private TimeAttack timeAttack;
 
     private static List<GameObject> droppedWaters = new List<GameObject>();
     private Vector2 startPos;
     private Vector2 endPos;
-    private bool isThrowable = true;
+
+    public bool isThrowable = true;
     //private Vector2 direction;
 
     // Use this for initialization
     void Start()
     {
         droppedWaters.Capacity = 100;
+        timeAttack = GetComponent<TimeAttack>();
     }
 
     void Update()
@@ -50,7 +54,6 @@ public class InputManager : MonoBehaviour
     {
         Vector2 vec = (endPos - startPos);
         Debug.Log(vec.sqrMagnitude);
-
         float angle = Mathf.Acos(Vector2.Dot(vec.normalized, Vector2.right)) * Mathf.Rad2Deg;
         //dot ab = cos theta = x
         //acos x = theta
@@ -60,14 +63,11 @@ public class InputManager : MonoBehaviour
             Debug.Log("throw lower or higher");
             return;
         }
-
-
         if (vec.sqrMagnitude < 50000.0f)
         {
             Debug.Log("Throw stronger");
             return;
         }
-
         if (vec.sqrMagnitude > 275000.0f)
         {
             vec.Normalize();
@@ -76,6 +76,7 @@ public class InputManager : MonoBehaviour
 
         BottleRd2d.AddForceAtPosition(vec, Bottle.position + Vector3.down * BottleCol.bounds.size.y);
         hand.SetActive(false);
+        if (timeAttack) timeAttack.ThrowCntIncrease();
         StartCoroutine(Reset());
     }
 
@@ -103,12 +104,14 @@ public class InputManager : MonoBehaviour
             Debug.Log("ohhhh");
             ohAnim.Play("Ohhhh");
             ohSound.Play();
+            if (timeAttack) timeAttack.StandCntIncrease();
         }
         else if (Physics2D.Raycast(Bottle.position + Bottle.up * BottleCol.bounds.extents.y, Bottle.up, 0.1f, 1 << 8))
         {
             Debug.Log("ohhhh");
             ohAnim.Play("Ohhhh");
             ohSound.Play();
+            if (timeAttack) timeAttack.StandCntIncrease();
         }
 
         //Debug.Log("Reset");
@@ -122,7 +125,7 @@ public class InputManager : MonoBehaviour
             if (!g.gameObject.activeSelf)
             {
                 g.SetActive(true);
-                g.transform.localPosition = Vector3.zero;
+                g.transform.localPosition = Vector3.up * Random.Range(0.45f, -0.45f) + Vector3.right * Random.Range(0.2f, -0.2f);
             }
         }
 
@@ -131,10 +134,7 @@ public class InputManager : MonoBehaviour
         isThrowable = true;
     }
 
-    public static void AddDropped(GameObject water)
-    {
-        droppedWaters.Add(water);
-    }
+    public static void AddDropped(GameObject water) => droppedWaters.Add(water);
 
     void OnDrawGizmos()
     {
