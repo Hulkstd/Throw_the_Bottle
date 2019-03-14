@@ -13,7 +13,7 @@ public class ChooseMode : MonoBehaviour
 
     public void StageMode()
     {
-        sceneChanger.ChangeScene("Champain");
+        sceneChanger.ChangeScene("Campain");
     }
 
     public void BurstMode()

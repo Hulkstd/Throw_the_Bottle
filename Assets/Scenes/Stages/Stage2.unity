@@ -1222,7 +1222,8 @@ MonoBehaviour:
   Bottle: {fileID: 1258422635}
   BottleCol: {fileID: 1258422632}
   BottleRd2d: {fileID: 1258422633}
-  watersParent: {fileID: 0}
+  watersParent: {fileID: 1839151412}
+  hand: {fileID: 1578665508}
 --- !u!82 &928079399
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4469,6 +4470,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0011c130b343e1488023abec91f812f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1839151412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1051705812, guid: 6ff5bf447cf01714db677b379d946a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 738414537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1862435400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1242698111733495287, guid: e90c8558826b9994c8adb3cd261975cd,
