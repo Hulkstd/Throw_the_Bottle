@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
     private Rigidbody2D BottleRd2d;
     [SerializeField]
     private Transform watersParent;
+    [SerializeField]
+    private GameObject hand;
 
     private static List<GameObject> droppedWaters = new List<GameObject>();
     private Vector2 startPos;
@@ -73,6 +75,7 @@ public class InputManager : MonoBehaviour
         }
 
         BottleRd2d.AddForceAtPosition(vec, Bottle.position + Vector3.down * BottleCol.bounds.size.y);
+        hand.SetActive(false);
         StartCoroutine(Reset());
     }
 
@@ -124,6 +127,7 @@ public class InputManager : MonoBehaviour
         }
 
         droppedWaters.Clear();
+        hand.SetActive(true);
         isThrowable = true;
     }
 
