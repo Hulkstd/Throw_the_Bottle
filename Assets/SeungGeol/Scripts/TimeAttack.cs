@@ -1,32 +1,58 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeAttack : MonoBehaviour
 {
     [SerializeField]
-    private InputManager Im;
+    public InputManager Im;
     [SerializeField]
     public int throwCount = 0;
     public int standCount = 0;
+    public UnityEngine.UI.Text TimeText;
+    public bool TimeOver;
+
+    private float Timeleft = 30.0f;
+    private bool IsStart;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Timer());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!IsStart) return;
+        Timeleft -= Time.deltaTime;
+        TimeText.text = (Timeleft < 0 ? 0 : Timeleft).ToString();
+    }
+
+    public void ResetGame()
+    {
+        Timeleft = 30.0f;
+        IsStart = false;
+        TimeOver = false;
+        TimeText.text = (30.00f).ToString();
+        throwCount = 0;
+        standCount = 0;
+    }
+
+    public void GameStart()
+    {
+        Im.isThrowable = true;
+        StartCoroutine(Timer());
     }
 
     private IEnumerator Timer()
     {
+        IsStart = true;
         yield return new WaitForSeconds(30.0f);
         Debug.Log("game set");
         Im.isThrowable = false;
+        TimeOver = true;
     }
 
     public void ThrowCntIncrease() => ++throwCount;

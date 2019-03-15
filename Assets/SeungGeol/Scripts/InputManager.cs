@@ -20,13 +20,15 @@ public class InputManager : MonoBehaviour
     private GameObject hand;
     [SerializeField]
     private TimeAttack timeAttack;
-
+    
+    //private Vector2 direction;
     private static List<GameObject> droppedWaters = new List<GameObject>();
     private Vector2 startPos;
     private Vector2 endPos;
 
+
     public bool isThrowable = true;
-    //private Vector2 direction;
+    public bool isWin;
 
     // Use this for initialization
     void Start()
@@ -39,6 +41,13 @@ public class InputManager : MonoBehaviour
     {
         //if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         if (!isThrowable) return;
+        if(timeAttack)
+        {
+            if (timeAttack.TimeOver)
+            {
+                isThrowable = false;
+            }
+        }
         if (Input.GetMouseButtonDown(0))
         {
             startPos = Input.mousePosition;
@@ -48,6 +57,11 @@ public class InputManager : MonoBehaviour
             endPos = Input.mousePosition;
             ThrowBottle();
         }
+    }
+
+    public void ResetGame()
+    {
+        isThrowable = false;
     }
 
     private void ThrowBottle()
@@ -104,6 +118,7 @@ public class InputManager : MonoBehaviour
             Debug.Log("ohhhh");
             ohAnim.Play("Ohhhh");
             ohSound.Play();
+            isWin = true;
             if (timeAttack) timeAttack.StandCntIncrease();
         }
         else if (Physics2D.Raycast(Bottle.position + Bottle.up * BottleCol.bounds.extents.y, Bottle.up, 0.1f, 1 << 8))
@@ -111,6 +126,7 @@ public class InputManager : MonoBehaviour
             Debug.Log("ohhhh");
             ohAnim.Play("Ohhhh");
             ohSound.Play();
+            isWin = true;
             if (timeAttack) timeAttack.StandCntIncrease();
         }
 
@@ -120,12 +136,17 @@ public class InputManager : MonoBehaviour
         BottleRd2d.angularVelocity = 0.0f;
         Bottle.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
+        Debug.Log(droppedWaters.Count);
+
         foreach (GameObject g in droppedWaters)
         {
-            if (!g.gameObject.activeSelf)
+            if (g)
             {
-                g.SetActive(true);
-                g.transform.localPosition = Vector3.up * Random.Range(0.45f, -0.45f) + Vector3.right * Random.Range(0.2f, -0.2f);
+                if (!g.gameObject.activeSelf)
+                {
+                    g.SetActive(true);
+                    g.transform.localPosition = Vector3.up * Random.Range(0.45f, -0.45f) + Vector3.right * Random.Range(0.2f, -0.2f);
+                }
             }
         }
 
