@@ -20,7 +20,9 @@ public class InputManager : MonoBehaviour
     private GameObject hand;
     [SerializeField]
     private TimeAttack timeAttack;
-    
+    [SerializeField]
+    private AudioSource throwSound;
+
     //private Vector2 direction;
     private static List<GameObject> droppedWaters = new List<GameObject>();
     private Vector2 startPos;
@@ -88,6 +90,7 @@ public class InputManager : MonoBehaviour
             vec *= 800.0f;
         }
 
+        throwSound.Play();
         BottleRd2d.AddForceAtPosition(vec, Bottle.position + Vector3.down * BottleCol.bounds.size.y);
         hand.SetActive(false);
         if (timeAttack) timeAttack.ThrowCntIncrease();

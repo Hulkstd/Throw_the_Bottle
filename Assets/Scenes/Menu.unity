@@ -682,7 +682,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5eff209dfb8ca884f8336d370575ee6a, type: 3}
-    m_FontSize: 140
+    m_FontSize: 130
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -693,7 +693,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uBB3C\uBCD1 \uB358\uC9C0\uAE30"
+  m_Text: "Throw \nThe \nBottle"
 --- !u!222 &815496300
 CanvasRenderer:
   m_ObjectHideFlags: 0
