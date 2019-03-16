@@ -49,6 +49,8 @@
 
 TODO)
 
+ 버그나 고치자 
+ 
  전시회 끝난 후 스프라이트 아틀라스 적용 & 스테이지 양산 & 스테이지 
 
 CREDIT)
@@ -60,4 +62,7 @@ CREDIT)
  배경음 및 효과음 2 : https://soundeffect-lab.info/
  
  일부 사진 : https://pixabay.com/ko/
+ 
+ 버그 최다 발견자 
+  최이삭
  
