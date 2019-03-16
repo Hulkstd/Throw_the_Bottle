@@ -38,7 +38,11 @@ public class StageModeUI : MonoBehaviour
         Debug.Log("RTY");
 
         AfterOverGame.SetActive(false);
+
+        Debug.Log("RTY1");
+
         Manager.isThrowable = true;
+        Manager.isWin = false;
     }
 
     public void Next()
