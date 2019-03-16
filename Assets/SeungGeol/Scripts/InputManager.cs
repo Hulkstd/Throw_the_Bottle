@@ -22,6 +22,8 @@ public class InputManager : MonoBehaviour
     private TimeAttack timeAttack;
     [SerializeField]
     private AudioSource throwSound;
+    [SerializeField]
+    private BottleSound bottleSound;
 
     //private Vector2 direction;
     private static List<GameObject> droppedWaters = new List<GameObject>();
@@ -155,6 +157,7 @@ public class InputManager : MonoBehaviour
 
         droppedWaters.Clear();
         hand.SetActive(true);
+        bottleSound.PlayoneTime = true;
         isThrowable = true;
     }
 

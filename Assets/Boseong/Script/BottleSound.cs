@@ -7,6 +7,8 @@ public class BottleSound : MonoBehaviour
     [SerializeField]
     private AudioSource landingSound;
 
+    public bool PlayoneTime = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +23,10 @@ public class BottleSound : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8)
+        if (collision.gameObject.layer == 8 && PlayoneTime)
         {
+            PlayoneTime = false;
+
             landingSound.Play();
         }
     }

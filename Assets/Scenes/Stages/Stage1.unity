@@ -1066,6 +1066,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.062000003
       objectReference: {fileID: 0}
+    - target: {fileID: 1678765873, guid: 6ff5bf447cf01714db677b379d946a7a, type: 3}
+      propertyPath: landingSound
+      value: 
+      objectReference: {fileID: 208817319}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ff5bf447cf01714db677b379d946a7a, type: 3}
 --- !u!4 &764372290 stripped
@@ -1359,6 +1363,7 @@ MonoBehaviour:
   hand: {fileID: 1578665508}
   timeAttack: {fileID: 0}
   throwSound: {fileID: 1011809780}
+  bottleSound: {fileID: 1678765873}
   isThrowable: 1
   isWin: 0
 --- !u!82 &928079399
@@ -5077,25 +5082,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0011c130b343e1488023abec91f812f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1678765863 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1206562843, guid: 6ff5bf447cf01714db677b379d946a7a,
+--- !u!114 &1678765873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1678765873, guid: 6ff5bf447cf01714db677b379d946a7a,
     type: 3}
   m_PrefabInstance: {fileID: 738414537}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1678765873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678765863}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b659bc19145d094180a64e5efadd4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  landingSound: {fileID: 208817319}
 --- !u!1 &1680258948 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1242698112343634788, guid: e90c8558826b9994c8adb3cd261975cd,
