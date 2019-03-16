@@ -45,6 +45,7 @@ public class InputManager : MonoBehaviour
     {
         //if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         if (!isThrowable) return;
+        if (isWin) return;
         if(timeAttack)
         {
             if (timeAttack.TimeOver)

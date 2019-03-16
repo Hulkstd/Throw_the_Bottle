@@ -1683,7 +1683,10 @@ MonoBehaviour:
   watersParent: {fileID: 1000082770}
   hand: {fileID: 1578665508}
   timeAttack: {fileID: 928079400}
+  throwSound: {fileID: 0}
+  bottleSound: {fileID: 0}
   isThrowable: 0
+  isWin: 0
 --- !u!82 &928079399
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2188,6 +2191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BeforeGame: {fileID: 799457190}
+  PlayButton: {fileID: 1321111895}
   BeforeGametext: {fileID: 12867667}
   TextAnimator: {fileID: 12867668}
   AfterGameover: {fileID: 170476100}
