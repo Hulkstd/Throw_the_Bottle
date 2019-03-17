@@ -2191,7 +2191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BeforeGame: {fileID: 799457190}
-  PlayButton: {fileID: 1321111895}
+  PlayButton: {fileID: 1321111897}
   BeforeGametext: {fileID: 12867667}
   TextAnimator: {fileID: 12867668}
   AfterGameover: {fileID: 170476100}

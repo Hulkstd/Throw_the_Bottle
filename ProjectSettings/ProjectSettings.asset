@@ -153,7 +153,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DSM2018.Throw_The_Bottle
+    Android: com.DSM2018.Throw the bottle!
     Standalone: com.Company.ProductName
   buildNumber: {}
   AndroidBundleVersionCode: 1
