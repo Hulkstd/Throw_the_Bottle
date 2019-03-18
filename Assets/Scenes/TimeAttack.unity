@@ -2373,18 +2373,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1321111898}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1202142603}
-        m_MethodName: TouchToPlay
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1321111898
@@ -4831,7 +4820,7 @@ GameObject:
   - component: {fileID: 1578665511}
   - component: {fileID: 1578665510}
   - component: {fileID: 1578665509}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Hand
   m_TagString: Ground
   m_Icon: {fileID: 0}

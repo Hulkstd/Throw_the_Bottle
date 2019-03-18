@@ -21,6 +21,7 @@ public class TimeAttackUI : MonoBehaviour
 
     private void Start()
     {
+        PlayButton.onClick.AddListener(delegate() { TouchToPlay(); });
         sceneChanger = SceneChanger.GetSceneChanger;
     }
 
@@ -49,10 +50,10 @@ public class TimeAttackUI : MonoBehaviour
     public void Retry()
     {
         BeforeGame.SetActive(true);
-        PlayButton.onClick.AddListener(TouchToPlay);
         TextAnimator.Play("NormalText");
         BeforeGametext.text = "Click To Play";
         BeforeGametext.transform.localScale = Vector3.one;
+        PlayButton.onClick.AddListener(delegate () { TouchToPlay(); });
         AfterGameover.SetActive(false);
         timeAttack.ResetGame();
         timeAttack.Im.ResetGame();
