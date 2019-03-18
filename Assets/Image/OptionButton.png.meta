@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 2151c1f367accba4a8d4d8857b5d409a
+guid: 1216a677425c3644e9a6f6f90cb5a606
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: OptionButton_0
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -46,7 +47,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 153, y: 87, z: 161, w: 111}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -93,11 +94,31 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: OptionButton_0
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 85
+        width: 524
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f23e61be6421d4bbf8ea24c11a025f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 28f7fcbc53bb1bc44b7159bd865c11a4
+    spriteID: 0e7ac0bdc2e248548b18237a2502c449
     vertices: []
     indices: 
     edges: []

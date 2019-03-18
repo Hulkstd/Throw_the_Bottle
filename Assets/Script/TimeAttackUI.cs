@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimeAttackUI : MonoBehaviour
 {
     public GameObject BeforeGame;
+    public Button PlayButton;
     public Text BeforeGametext;
     public Animator TextAnimator;
 
@@ -20,6 +21,7 @@ public class TimeAttackUI : MonoBehaviour
 
     private void Start()
     {
+        PlayButton.onClick.AddListener(delegate() { TouchToPlay(); });
         sceneChanger = SceneChanger.GetSceneChanger;
     }
 
@@ -36,6 +38,7 @@ public class TimeAttackUI : MonoBehaviour
 
     public void TouchToPlay()
     {
+        PlayButton.onClick.RemoveAllListeners();
         StartCoroutine(Play());
     }
 
@@ -50,6 +53,7 @@ public class TimeAttackUI : MonoBehaviour
         TextAnimator.Play("NormalText");
         BeforeGametext.text = "Click To Play";
         BeforeGametext.transform.localScale = Vector3.one;
+        PlayButton.onClick.AddListener(delegate () { TouchToPlay(); });
         AfterGameover.SetActive(false);
         timeAttack.ResetGame();
         timeAttack.Im.ResetGame();
