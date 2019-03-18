@@ -59,7 +59,7 @@ public class StageModeUI : MonoBehaviour
 
     public void Option()
     {
-        Buttons.SetActive(true);
+        Buttons.SetActive(!Buttons.activeInHierarchy);
     }
 
     public void ShowCredit()
