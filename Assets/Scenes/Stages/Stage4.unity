@@ -5371,7 +5371,7 @@ GameObject:
   - component: {fileID: 1578665511}
   - component: {fileID: 1578665510}
   - component: {fileID: 1578665509}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Hand
   m_TagString: Ground
   m_Icon: {fileID: 0}
