@@ -8,6 +8,8 @@ public class StageModeUI : MonoBehaviour
 
     public GameObject AfterOverGame;
     public InputManager Manager;
+    public GameObject Buttons;
+    public GameObject CreditText;
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +55,21 @@ public class StageModeUI : MonoBehaviour
         int stage = int.Parse(a.Split('e')[1]);
 
         sceneChanger.ChangeScene("Stage" + (stage + 1).ToString());
+    }
+
+    public void Option()
+    {
+        Buttons.SetActive(true);
+    }
+
+    public void ShowCredit()
+    {
+        CreditText.SetActive(true);
+        Buttons.SetActive(false);
+    }
+
+    public void UnshowCredit()
+    {
+        CreditText.SetActive(false);
     }
 }

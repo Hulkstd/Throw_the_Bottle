@@ -125,7 +125,7 @@ public class InputManager : MonoBehaviour
             ohAnim.Play("Ohhhh");
             ohSound.Play();
             isWin = true;
-            if (timeAttack) timeAttack.StandCntIncrease();
+            if (timeAttack) { timeAttack.StandCntIncrease(); isWin = false; }
         }
         else if (Physics2D.Raycast(Bottle.position + Bottle.up * BottleCol.bounds.extents.y, Bottle.up, 0.1f, 1 << 8))
         {
@@ -133,7 +133,7 @@ public class InputManager : MonoBehaviour
             ohAnim.Play("Ohhhh");
             ohSound.Play();
             isWin = true;
-            if (timeAttack) timeAttack.StandCntIncrease();
+            if (timeAttack) { timeAttack.StandCntIncrease(); isWin = false; }
         }
 
         //Debug.Log("Reset");
