@@ -12,17 +12,36 @@ using UnityEngine;
 
 public class ParsingMap : MonoBehaviour
 {
-    public static int StageNum = 1;
-    public static GameObject Sprite;
-    public static Sprite[] BGImage;
-    public static string Path = "StageMap\\Stage";
+    public int StageNum = 1;
+    [SerializeField]
+    public GameObject Sprite;
+    [SerializeField]
+    public Sprite[] BGImage;
 
-    public static void SetStageNum(int Num)
+    private string Path = "StageMap\\Stage";
+
+    public static ParsingMap Instante
+    {
+        get
+        {
+            if (Instante)
+                return Instante;
+
+            ParsingMap parsingMap = new GameObject("parsingMap").AddComponent<ParsingMap>();
+
+            DontDestroyOnLoad(parsingMap);
+
+            return parsingMap;
+        }
+    }
+    
+    
+    public void SetStageNum(int Num)
     {
         StageNum = Num;
     }
 
-    public static void ParseMap()
+    public void ParseMap()
     {
         TextAsset textasset = Resources.Load<TextAsset>(Path + StageNum.ToString());
 
