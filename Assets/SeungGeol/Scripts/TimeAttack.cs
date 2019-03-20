@@ -26,7 +26,7 @@ public class TimeAttack : MonoBehaviour
     void Update()
     {
         if (!IsStart) return;
-        Timeleft -= Time.deltaTime;
+        Timeleft -= Time.deltaTime / 2;
         TimeText.text = (Timeleft < 0 ? 0 : Timeleft).ToString();
     }
 
@@ -49,7 +49,7 @@ public class TimeAttack : MonoBehaviour
     private IEnumerator Timer()
     {
         IsStart = true;
-        yield return new WaitForSeconds(30.0f);
+        yield return new WaitForSeconds(60.0f);
         Debug.Log("game set");
         Im.isThrowable = false;
         TimeOver = true;

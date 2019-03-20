@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
     private Material mat;
 
     //private Vector2 direction;
-    private static List<GameObject> droppedWaters = new List<GameObject>();
+    private static Dictionary<GameObject, Rigidbody2D> droppedWaters = new Dictionary<GameObject, Rigidbody2D>();
     public Vector2 startPos;
     public Vector2 endPos;
 
@@ -43,7 +43,6 @@ public class InputManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        droppedWaters.Capacity = 100;
         timeAttack = GetComponent<TimeAttack>();
     }
 
@@ -62,11 +61,11 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             endPos = startPos = Vector2.zero;
-            startPos = Input.mousePosition;
+            startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         else if (Input.GetMouseButton(0))
         {
-            endPos = Input.mousePosition;
+            endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         else if(Input.GetMouseButtonUp(0))
         {
@@ -92,7 +91,7 @@ public class InputManager : MonoBehaviour
             Debug.Log("throw lower or higher");
             return;
         }
-        if (vec.sqrMagnitude < 50000.0f)
+        if (vec.sqrMagnitude < 50.0f)
         {
             Debug.Log("Throw stronger");
             return;
@@ -102,9 +101,9 @@ public class InputManager : MonoBehaviour
              vec.Normalize();
              vec *= 800.0f;
          }*/
-        if (vec.sqrMagnitude >= 50000.0f)
+        if (vec.sqrMagnitude >= 50.0f)
         {
-            vec *= 1.5f;
+            vec *= 80f;
         }
         
         throwSound.Play();
@@ -114,61 +113,7 @@ public class InputManager : MonoBehaviour
         StartCoroutine(Reset());
         //StartCoroutine(SaveMoveway());  
     }
-
-    private IEnumerator SaveMoveway()
-    {
-        float timer = 0.0f;
-
-        while(true)
-        {
-            if (Mathf.Abs(BottleRd2d.angularVelocity) <= 0.01f)
-            {
-                timer += 0.4f;
-            }
-            else
-            {
-                timer = 0.0f;
-            }
-            if (!BottleRenderer.isVisible)
-            {
-                timer = 1.0f;
-            }
-
-            yield return new WaitForSeconds(0.4f);
-
-            Moveway.Add(Bottle.transform.position);
-
-            if (timer >= 1.0f)
-            {
-                break;
-            }
-        }
-
-        /*if(!mat)
-        {
-            Debug.LogError("mat is null");
-            yield return null;
-        }
-
-        GL.PushMatrix();
-        mat.SetPass(0);
-        GL.LoadOrtho();
-
-        GL.Begin(GL.LINES);
-        GL.Color(Color.white);
-
-        foreach(Vector2 vec in Moveway)
-        {
-            GL.Vertex(vec);
-        }
-
-        GL.End();
-
-        GL.PopMatrix();*/
-
-        yield return null;
-    }
-
+    
     private IEnumerator Reset()
     {
         isThrowable = false;
@@ -197,21 +142,35 @@ public class InputManager : MonoBehaviour
 
         if (Physics2D.Raycast(Bottle.position + -Bottle.up * BottleCol.bounds.extents.y, -Bottle.up, 0.1f, 1 << 8))
         {
-            Debug.Log("ohhhh");
-            ohAnim.Play("Ohhhh");
-            ohSound.Play();
-            isWin = true;
+            if (timeAttack)
+            {
+                timeAttack.StandCntIncrease();
+                isWin = false;
+            }
+            else
+            {
+                Debug.Log("ohhhh");
+                ohAnim.Play("Ohhhh");
+                ohSound.Play();
+                isWin = true;
+            }
             startPos = endPos = Vector2.zero;
-            if (timeAttack) { timeAttack.StandCntIncrease(); isWin = false; }
         }
         else if (Physics2D.Raycast(Bottle.position + Bottle.up * BottleCol.bounds.extents.y, Bottle.up, 0.1f, 1 << 8))
         {
-            Debug.Log("ohhhh");
-            ohAnim.Play("Ohhhh");
-            ohSound.Play();
-            isWin = true;
+            if (timeAttack)
+            {
+                timeAttack.StandCntIncrease();
+                isWin = false;
+            }
+            else
+            {
+                Debug.Log("ohhhh");
+                ohAnim.Play("Ohhhh");
+                ohSound.Play();
+                isWin = true;
+            }
             startPos = endPos = Vector2.zero;
-            if (timeAttack) { timeAttack.StandCntIncrease(); isWin = false; }
         }
 
         //Debug.Log("Reset");
@@ -222,14 +181,15 @@ public class InputManager : MonoBehaviour
 
         Debug.Log(droppedWaters.Count);
 
-        foreach (GameObject g in droppedWaters)
+        foreach (var g in droppedWaters)
         {
-            if (g)
+            if (g.Key)
             {
-                if (!g.gameObject.activeSelf)
+                if (!g.Key.activeSelf)
                 {
-                    g.SetActive(true);
-                    g.transform.localPosition = Vector3.up * Random.Range(0.45f, -0.45f) + Vector3.right * Random.Range(0.2f, -0.2f);
+                    g.Key.SetActive(true);
+                    g.Key.transform.localPosition = Vector3.up * Random.Range(0.45f, -0.45f) + Vector3.right * Random.Range(0.2f, -0.2f);
+                    g.Value.velocity = Vector2.zero;
                 }
             }
         }
@@ -240,7 +200,7 @@ public class InputManager : MonoBehaviour
         isThrowable = true;
     }
 
-    public static void AddDropped(GameObject water) => droppedWaters.Add(water);
+    public static void AddDropped(GameObject water, Rigidbody2D rig) => droppedWaters.Add(water, rig);
 
     void OnDrawGizmos()
     {

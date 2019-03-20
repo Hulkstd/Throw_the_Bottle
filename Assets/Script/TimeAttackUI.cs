@@ -10,6 +10,7 @@ public class TimeAttackUI : MonoBehaviour
     public Button PlayButton;
     public Text BeforeGametext;
     public Animator TextAnimator;
+    public Text ScoreText;
 
     public GameObject AfterGameover;
     public Text SuccessCount;
@@ -24,16 +25,25 @@ public class TimeAttackUI : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 2.0f;
+
         PlayButton.onClick.AddListener(delegate() { TouchToPlay(); });
         sceneChanger = SceneChanger.GetSceneChanger;
     }
 
     private void Update()
     {
-        if (!timeAttack.TimeOver) return;
+        if (!timeAttack.TimeOver)
+        {
+            ScoreText.gameObject.SetActive(true);
+            ScoreText.text = timeAttack.standCount.ToString();
+
+            return;
+        }
 
         if (!AfterGameover.activeInHierarchy)
         {
+            ScoreText.gameObject.SetActive(false);
             AfterGameover.SetActive(true);
             SuccessCount.text = "Hit : " + timeAttack.standCount.ToString();
         }
@@ -47,6 +57,7 @@ public class TimeAttackUI : MonoBehaviour
 
     public void BackToMain()
     {
+        Time.timeScale = 1;
         sceneChanger.ChangeScene("ModeChoose");
     }
 
@@ -61,7 +72,7 @@ public class TimeAttackUI : MonoBehaviour
         timeAttack.ResetGame();
         timeAttack.Im.ResetGame();
     }
-
+        
     IEnumerator Play()
     {
         BeforeGametext.text = "6";
@@ -70,7 +81,7 @@ public class TimeAttackUI : MonoBehaviour
         {
             BeforeGametext.text = (int.Parse(BeforeGametext.text) - 1).ToString();
             TextAnimator.Play("BigtoSmall");
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
         }
 
         BeforeGame.SetActive(false);
