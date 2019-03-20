@@ -17,6 +17,9 @@ public class TimeAttackUI : MonoBehaviour
 
     public TimeAttack timeAttack;
 
+    public GameObject Buttons;
+    public GameObject CreditText;
+
     private SceneChanger sceneChanger;
 
     private void Start()
@@ -75,5 +78,21 @@ public class TimeAttackUI : MonoBehaviour
         timeAttack.GameStart();
 
         yield return null;
+    }
+    
+    public void Option()
+    {
+        Buttons.SetActive(!Buttons.activeInHierarchy);
+    }
+
+    public void ShowCredit()
+    {
+        CreditText.SetActive(true);
+        Buttons.SetActive(false);
+    }
+
+    public void UnshowCredit()
+    {
+        CreditText.SetActive(false);
     }
 }

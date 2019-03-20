@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private Rigidbody2D BottleRd2d;
     [SerializeField]
+    private Renderer BottleRenderer;
+    [SerializeField]
     private Transform watersParent;
     [SerializeField]
     private GameObject hand;
@@ -24,12 +26,16 @@ public class InputManager : MonoBehaviour
     private AudioSource throwSound;
     [SerializeField]
     private BottleSound bottleSound;
+    [SerializeField]
+    private Material mat;
 
     //private Vector2 direction;
     private static List<GameObject> droppedWaters = new List<GameObject>();
-    private Vector2 startPos;
-    private Vector2 endPos;
+    public Vector2 startPos;
+    public Vector2 endPos;
 
+    // For Drawing a line that the bottle moved way just before.
+    public List<Vector2> Moveway;
 
     public bool isThrowable = true;
     public bool isWin;
@@ -55,12 +61,16 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
+            endPos = startPos = Vector2.zero;
             startPos = Input.mousePosition;
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButton(0))
         {
             endPos = Input.mousePosition;
-            ThrowBottle();
+        }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            ThrowBottle(); 
         }
     }
 
@@ -87,25 +97,86 @@ public class InputManager : MonoBehaviour
             Debug.Log("Throw stronger");
             return;
         }
-        if (vec.sqrMagnitude > 275000.0f)
+        /* if (vec.sqrMagnitude >= 50000.0f)
+         {
+             vec.Normalize();
+             vec *= 800.0f;
+         }*/
+        if (vec.sqrMagnitude >= 50000.0f)
         {
-            vec.Normalize();
-            vec *= 800.0f;
+            vec *= 1.5f;
         }
-
+        
         throwSound.Play();
         BottleRd2d.AddForceAtPosition(vec, Bottle.position + Vector3.down * BottleCol.bounds.size.y);
         hand.SetActive(false);
         if (timeAttack) timeAttack.ThrowCntIncrease();
         StartCoroutine(Reset());
+        //StartCoroutine(SaveMoveway());  
+    }
+
+    private IEnumerator SaveMoveway()
+    {
+        float timer = 0.0f;
+
+        while(true)
+        {
+            if (Mathf.Abs(BottleRd2d.angularVelocity) <= 0.01f)
+            {
+                timer += 0.4f;
+            }
+            else
+            {
+                timer = 0.0f;
+            }
+            if (!BottleRenderer.isVisible)
+            {
+                timer = 1.0f;
+            }
+
+            yield return new WaitForSeconds(0.4f);
+
+            Moveway.Add(Bottle.transform.position);
+
+            if (timer >= 1.0f)
+            {
+                break;
+            }
+        }
+
+        /*if(!mat)
+        {
+            Debug.LogError("mat is null");
+            yield return null;
+        }
+
+        GL.PushMatrix();
+        mat.SetPass(0);
+        GL.LoadOrtho();
+
+        GL.Begin(GL.LINES);
+        GL.Color(Color.white);
+
+        foreach(Vector2 vec in Moveway)
+        {
+            GL.Vertex(vec);
+        }
+
+        GL.End();
+
+        GL.PopMatrix();*/
+
+        yield return null;
     }
 
     private IEnumerator Reset()
     {
         isThrowable = false;
         float timer = 0.0f;
+        Moveway.Clear();
         yield return new WaitUntil(() =>
         {
+            Moveway.Add(Bottle.position);
             if (Mathf.Abs(BottleRd2d.angularVelocity) <= 0.01f)
             {
                 timer += Time.deltaTime;
@@ -113,6 +184,11 @@ public class InputManager : MonoBehaviour
             else
             {
                 timer = 0.0f;
+            }
+
+            if(!BottleRenderer.isVisible)
+            {
+                timer = 1.0f;
             }
 
             return (timer >= 1.0f) ? true : false;
@@ -125,6 +201,7 @@ public class InputManager : MonoBehaviour
             ohAnim.Play("Ohhhh");
             ohSound.Play();
             isWin = true;
+            startPos = endPos = Vector2.zero;
             if (timeAttack) { timeAttack.StandCntIncrease(); isWin = false; }
         }
         else if (Physics2D.Raycast(Bottle.position + Bottle.up * BottleCol.bounds.extents.y, Bottle.up, 0.1f, 1 << 8))
@@ -133,6 +210,7 @@ public class InputManager : MonoBehaviour
             ohAnim.Play("Ohhhh");
             ohSound.Play();
             isWin = true;
+            startPos = endPos = Vector2.zero;
             if (timeAttack) { timeAttack.StandCntIncrease(); isWin = false; }
         }
 
