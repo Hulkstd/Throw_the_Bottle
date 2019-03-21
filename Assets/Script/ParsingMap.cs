@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 /*
  * 파싱 형식
@@ -13,29 +14,55 @@ using UnityEngine;
 public class ParsingMap : MonoBehaviour
 {
     public int StageNum = 1;
-    [SerializeField]
     public GameObject Sprite;
-    [SerializeField]
-    public Sprite[] BGImage;
+    public List<Sprite> BGImages = new List<Sprite>();
+
+    public Sprite BGImage1;
+    public Sprite BGImage2;
+    public Sprite BGImage3;
+    public Sprite BGImage4;
+    public Sprite BGImage5;
+    public Sprite BGImage6;
+    public Sprite BGImage7;
+    public Sprite BGImage8;
+    public Sprite BGImage9;
+    public Sprite BGImage10;
 
     private string Path = "StageMap\\Stage";
 
+    private static ParsingMap instante;
     public static ParsingMap Instante
     {
         get
         {
-            if (Instante)
-                return Instante;
+            if (instante)
+                return instante;
 
-            ParsingMap parsingMap = new GameObject("parsingMap").AddComponent<ParsingMap>();
+            instante = new GameObject("ParsingMap").AddComponent<ParsingMap>();
 
-            DontDestroyOnLoad(parsingMap);
+            DontDestroyOnLoad(instante);
 
-            return parsingMap;
+            return instante;
         }
     }
-    
-    
+
+    void OnEnable()
+    {
+        Sprite = Resources.Load<GameObject>("Terrain");
+        BGImages.Clear();
+        /*BGImages.Add(BGImage1);
+        BGImages.Add(BGImage2);
+        BGImages.Add(BGImage3);
+        BGImages.Add(BGImage4);
+        BGImages.Add(BGImage5);
+        BGImages.Add(BGImage6);
+        BGImages.Add(BGImage7);
+        BGImages.Add(BGImage8);
+        BGImages.Add(BGImage9);
+        BGImages.Add(BGImage10);*/
+    }
+
+
     public void SetStageNum(int Num)
     {
         StageNum = Num;
@@ -65,7 +92,7 @@ public class ParsingMap : MonoBehaviour
 
                 case "bg":
                     {
-                        GameObject.Find("BackGroundImage").GetComponent<SpriteRenderer>().sprite = BGImage[int.Parse(texts[1])];
+                        GameObject.Find("BackGroundImage").GetComponent<SpriteRenderer>().sprite = BGImages[int.Parse(texts[1])];
                     }
                     break;
             }

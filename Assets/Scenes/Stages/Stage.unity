@@ -1243,7 +1243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &494529019
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2158,6 +2158,7 @@ GameObject:
   - component: {fileID: 928079395}
   - component: {fileID: 928079399}
   - component: {fileID: 928079400}
+  - component: {fileID: 928079401}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2369,6 +2370,18 @@ MonoBehaviour:
   IM: {fileID: 928079398}
   mat: {fileID: 2100000, guid: ad022b67b7edc8c4cb2e1ca2a5217972, type: 2}
   cam: {fileID: 928079396}
+--- !u!114 &928079401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928079394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc87629ad3e9d4e923e7a6601bb83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &944241129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1242698111775730102, guid: e90c8558826b9994c8adb3cd261975cd,
