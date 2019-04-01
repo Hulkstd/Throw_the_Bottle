@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageSelecter : MonoBehaviour
+public class StageSelector : MonoBehaviour
 {
     public SceneChanger sceneChanger;
 
@@ -13,6 +13,7 @@ public class StageSelecter : MonoBehaviour
 
     public void EnterStage(UnityEngine.UI.Text text)
     {
-        sceneChanger.ChangeScene("Stage" + text.text);
+        ParsingMap.Instante.SetStageNum(int.Parse(text.text));
+        sceneChanger.ChangeScene("Stage");
     }
 }

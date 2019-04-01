@@ -121,7 +121,7 @@ public class InputManager : MonoBehaviour
         Moveway.Clear();
         yield return new WaitUntil(() =>
         {
-            Moveway.Add(Bottle.position);
+            Moveway.Add(Bottle.transform.position);
             if (Mathf.Abs(BottleRd2d.angularVelocity) <= 0.01f)
             {
                 timer += Time.deltaTime;

@@ -51,10 +51,20 @@ public class StageModeUI : MonoBehaviour
     {
         Debug.Log("NXT");
 
+        /*
         string a = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         int stage = int.Parse(a.Split('e')[1]);
 
         sceneChanger.ChangeScene("Stage" + (stage + 1).ToString());
+        */
+        Manager.isWin = false;
+        Manager.isThrowable = true;
+        Manager.Moveway.Clear();
+
+        AfterOverGame.SetActive(false);
+        
+        ParsingMap.Instante.SetStageNum(ParsingMap.Instante.StageNum + 1);
+        ParsingMap.Instante.ParseMap();
     }
 
     public void Option()

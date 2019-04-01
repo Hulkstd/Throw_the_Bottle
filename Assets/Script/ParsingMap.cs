@@ -15,7 +15,8 @@ public class ParsingMap : MonoBehaviour
 {
     public int StageNum = 1;
     public GameObject Sprite;
-    public List<Sprite> BGImages = new List<Sprite>();
+    public List<GameObject> SpawnSprite = new List<GameObject>();
+    private List<Sprite> BGImages = new List<Sprite>();
 
     public Sprite BGImage1;
     public Sprite BGImage2;
@@ -68,8 +69,20 @@ public class ParsingMap : MonoBehaviour
         StageNum = Num;
     }
 
+    public void ResetMap()
+    {
+        for(int i = 0; i < SpawnSprite.Count; i++)
+        {
+            SpawnSprite[i].SetActive(false);
+        }
+
+        SpawnSprite.Clear();
+    }
+
     public void ParseMap()
     {
+        ResetMap();
+
         TextAsset textasset = Resources.Load<TextAsset>(Path + StageNum.ToString());
 
         string[] lines = textasset.text.Split('\n');
@@ -87,6 +100,8 @@ public class ParsingMap : MonoBehaviour
                         gameobject.transform.position = new Vector2(float.Parse(texts[1]), float.Parse(texts[2]));
                         gameobject.transform.rotation = Quaternion.Euler(float.Parse(texts[3]), float.Parse(texts[4]), float.Parse(texts[5]));
                         gameobject.transform.localScale = new Vector3(float.Parse(texts[6]), float.Parse(texts[7]), 1);
+
+                        SpawnSprite.Add(gameobject);
                     }
                     break;
 
