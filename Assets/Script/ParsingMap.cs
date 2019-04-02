@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
@@ -16,18 +17,6 @@ public class ParsingMap : MonoBehaviour
     public int StageNum = 1;
     public GameObject Sprite;
     public List<GameObject> SpawnSprite = new List<GameObject>();
-    private List<Sprite> BGImages = new List<Sprite>();
-
-    public Sprite BGImage1;
-    public Sprite BGImage2;
-    public Sprite BGImage3;
-    public Sprite BGImage4;
-    public Sprite BGImage5;
-    public Sprite BGImage6;
-    public Sprite BGImage7;
-    public Sprite BGImage8;
-    public Sprite BGImage9;
-    public Sprite BGImage10;
 
     private string Path = "StageMap\\Stage";
 
@@ -50,17 +39,6 @@ public class ParsingMap : MonoBehaviour
     void OnEnable()
     {
         Sprite = Resources.Load<GameObject>("Terrain");
-        BGImages.Clear();
-        /*BGImages.Add(BGImage1);
-        BGImages.Add(BGImage2);
-        BGImages.Add(BGImage3);
-        BGImages.Add(BGImage4);
-        BGImages.Add(BGImage5);
-        BGImages.Add(BGImage6);
-        BGImages.Add(BGImage7);
-        BGImages.Add(BGImage8);
-        BGImages.Add(BGImage9);
-        BGImages.Add(BGImage10);*/
     }
 
 
@@ -107,7 +85,17 @@ public class ParsingMap : MonoBehaviour
 
                 case "bg":
                     {
-                        GameObject.Find("BackGroundImage").GetComponent<SpriteRenderer>().sprite = BGImages[int.Parse(texts[1])];
+                        SpriteRenderer SP = Instantiate(new SpriteRenderer());
+                        GameObject gameobject = SP.gameObject;
+
+                        var sprites = from sprite in Resources.FindObjectsOfTypeAll<Sprite>()
+                                      where sprite.name == texts[1]
+                                      orderby sprite.name
+                                      select sprite;
+
+                        gameobject.transform.position = new Vector2(float.Parse(texts[2]), float.Parse(texts[3]));
+                        gameobject.transform.rotation = Quaternion.Euler(float.Parse(texts[4]), float.Parse(texts[5]), float.Parse(texts[6]));
+                        gameobject.transform.localScale = new Vector3(float.Parse(texts[7]), float.Parse(texts[8]), 1);
                     }
                     break;
             }
