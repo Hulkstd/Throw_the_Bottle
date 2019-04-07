@@ -11,6 +11,13 @@ public class CreateMap : MonoBehaviour
 
     public void CreateTextFile()
     {
+        DirectoryInfo di = new DirectoryInfo("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt");
+        if (di.Exists)
+        {
+            File.Delete("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt");
+            File.Delete("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt.meta");
+        }
+
         using (StreamWriter streamWriter = new StreamWriter("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt"))
         {
             streamWriter.WriteLine(Stage.transform.childCount);
