@@ -18,10 +18,12 @@ public class StageSetting : MonoBehaviour
 
     public Transform Content;
 
-    private void Start()
+    private List<Button> Buttons;
+
+    private void Awake()
     {
         Vector2 Position = BasePosition;
-
+        Buttons = new List<Button>();
         int i = 1;
 
         for (float Width = 0; Width < ContentSize.x - Merge.x; Width += Merge.x + ButtonSize.x)
@@ -30,12 +32,16 @@ public class StageSetting : MonoBehaviour
             {
                 Button button = Instantiate(StageButtonPR, Content, false);
                 button.onClick.AddListener(delegate () { stageSelector.EnterStage(button.gameObject.transform.GetChild(0).GetComponent<Text>()); });
+                button.onClick.AddListener(delegate () { Buttons.ForEach(b => { b.interactable = false; } ); });
                 button.gameObject.transform.GetChild(0).GetComponent<Text>().text = i.ToString();
+                
                 i++;
 
                 //Debug.Log(Width + " " + Height);
 
                 button.gameObject.GetComponent<RectTransform>().localPosition -= new Vector3(-Width, Height);
+
+                Buttons.Add(button);
             }
         }
     }

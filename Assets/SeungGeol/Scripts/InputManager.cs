@@ -140,39 +140,45 @@ public class InputManager : MonoBehaviour
         }
         );
 
-        if (Physics2D.Raycast(Bottle.position + -Bottle.up * BottleCol.bounds.extents.y, -Bottle.up, 0.1f, 1 << 8))
-        {
-            if (timeAttack)
-            {
-                timeAttack.StandCntIncrease();
-                isWin = false;
-            }
-            else
-            {
-                Debug.Log("ohhhh");
-                ohAnim.Play("Ohhhh");
-                ohSound.Play();
-                isWin = true;
-            }
-            startPos = endPos = Vector2.zero;
-        }
-        else if (Physics2D.Raycast(Bottle.position + Bottle.up * BottleCol.bounds.extents.y, Bottle.up, 0.1f, 1 << 8))
-        {
-            if (timeAttack)
-            {
-                timeAttack.StandCntIncrease();
-                isWin = false;
-            }
-            else
-            {
-                Debug.Log("ohhhh");
-                ohAnim.Play("Ohhhh");
-                ohSound.Play();
-                isWin = true;
-            }
-            startPos = endPos = Vector2.zero;
-        }
+        Debug.Log("Rotation z " + Bottle.rotation.eulerAngles.z);
 
+        if ((0 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 10) ||
+            (350 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 360) ||
+            (170 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 190))
+        {
+            if (Physics2D.Raycast(Bottle.position + -Bottle.up * BottleCol.bounds.extents.y, -Bottle.up, 0.1f, 1 << 8))
+            {
+                if (timeAttack)
+                {
+                    timeAttack.StandCntIncrease();
+                    isWin = false;
+                }
+                else
+                {
+                    Debug.Log("ohhhh");
+                    ohAnim.Play("Ohhhh");
+                    ohSound.Play();
+                    isWin = true;
+                }
+                startPos = endPos = Vector2.zero;
+            }
+            else if (Physics2D.Raycast(Bottle.position + Bottle.up * BottleCol.bounds.extents.y, Bottle.up, 0.1f, 1 << 8))
+            {
+                if (timeAttack)
+                {
+                    timeAttack.StandCntIncrease();
+                    isWin = false;
+                }
+                else
+                {
+                    Debug.Log("ohhhh");
+                    ohAnim.Play("Ohhhh");
+                    ohSound.Play();
+                    isWin = true;
+                }
+                startPos = endPos = Vector2.zero;
+            }
+        }
         //Debug.Log("Reset");
         Bottle.position = new Vector2(-2.7f, 0.5f);
         BottleRd2d.velocity = Vector2.zero;
