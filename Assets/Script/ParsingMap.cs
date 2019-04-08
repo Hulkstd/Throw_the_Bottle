@@ -41,6 +41,10 @@ public class ParsingMap : MonoBehaviour
         Sprite = Resources.Load<GameObject>("Terrain");
     }
 
+    private void OnDisable()
+    {
+        SpawnSprite.Clear();
+    }
 
     public void SetStageNum(int Num)
     {
@@ -49,6 +53,8 @@ public class ParsingMap : MonoBehaviour
 
     public void ResetMap()
     {
+        Debug.Log(SpawnSprite.Count);
+
         for (int i = 0; i < SpawnSprite.Count; i++)
         {
             SpawnSprite[i].SetActive(false);
