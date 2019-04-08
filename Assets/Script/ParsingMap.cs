@@ -49,7 +49,7 @@ public class ParsingMap : MonoBehaviour
 
     public void ResetMap()
     {
-        for(int i = 0; i < SpawnSprite.Count; i++)
+        for (int i = 0; i < SpawnSprite.Count; i++)
         {
             SpawnSprite[i].SetActive(false);
         }

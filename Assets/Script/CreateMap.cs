@@ -49,17 +49,20 @@ public class CreateMap : MonoBehaviour
                 streamWriter.WriteLine(str);
             }
 
-            if(BGImage.transform.GetChild(0))
+            if (BGImage)
             {
-                Transform trans = BGImage.transform.GetChild(0);
+                if (BGImage.transform.GetChild(0))
+                {
+                    Transform trans = BGImage.transform.GetChild(0);
 
-                SpriteRenderer SP = trans.GetComponent<SpriteRenderer>();
+                    SpriteRenderer SP = trans.GetComponent<SpriteRenderer>();
 
-                string str = $"bg {SP.sprite.name} {SP.transform.position.x} {SP.transform.position.y}" +
-                             $"{SP.transform.rotation.eulerAngles.x} {SP.transform.rotation.eulerAngles.y} {SP.transform.rotation.eulerAngles.z}" +
-                             $"{SP.transform.localScale.x} {SP.transform.localScale.x}";
+                    string str = $"bg {SP.sprite.name} {SP.transform.position.x} {SP.transform.position.y}" +
+                                 $"{SP.transform.rotation.eulerAngles.x} {SP.transform.rotation.eulerAngles.y} {SP.transform.rotation.eulerAngles.z}" +
+                                 $"{SP.transform.localScale.x} {SP.transform.localScale.x}";
 
-                streamWriter.WriteLine(str);
+                    streamWriter.WriteLine(str);
+                }
             }
         }
     }
