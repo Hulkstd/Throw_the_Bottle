@@ -7,6 +7,7 @@ public class CreateMap : MonoBehaviour
 {
     public GameObject Stage;
     public GameObject BGImage;
+    public List<Transform> gameObjects = new List<Transform>();
     public UnityEngine.UI.InputField input;
 
     public void CreateTextFile()
@@ -21,10 +22,25 @@ public class CreateMap : MonoBehaviour
         using (StreamWriter streamWriter = new StreamWriter("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt"))
         {
             streamWriter.WriteLine(Stage.transform.childCount);
-
-            for (int i = 0; i < Stage.transform.childCount; i++)
+            for (int i = 0; i < Stage.transform.childCount; ++i)
             {
-                Transform game = Stage.transform.GetChild(i);
+                Transform child = Stage.transform.GetChild(i);
+                if (child.childCount > 0)
+                {
+                    for (int j = 0; j < child.childCount; ++j)
+                    {
+                        gameObjects.Add(child.GetChild(j));
+                    }
+                }
+                else
+                {
+                    gameObjects.Add(child);
+                }
+            }
+
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                Transform game = gameObjects[i];
 
                 string str = $"sprite {game.position.x} {game.position.y} " +
                              $"{game.rotation.eulerAngles.x} {game.rotation.eulerAngles.y} {game.rotation.eulerAngles.z} " +
