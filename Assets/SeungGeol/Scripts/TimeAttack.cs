@@ -53,6 +53,9 @@ public class TimeAttack : MonoBehaviour
         Debug.Log("game set");
         Im.isThrowable = false;
         TimeOver = true;
+
+        PlayerGameScript.AddScoreToLeaderboard(GPGSIds.leaderboard_time_attack_ranking, standCount);
+        PlayerGameScript.ShowLeaderboardsUI();
     }
 
     public void ThrowCntIncrease() => ++throwCount;

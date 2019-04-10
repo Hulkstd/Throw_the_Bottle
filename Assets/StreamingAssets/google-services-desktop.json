@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "583579009563",
+    "firebase_url": "https://throw-the-bottle-7471329.firebaseio.com",
+    "project_id": "throw-the-bottle-7471329",
+    "storage_bucket": "throw-the-bottle-7471329.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583579009563:android:c9f451839771012c",
+        "android_client_info": {
+          "package_name": "com.DSM2018.Throw_the_bottle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa0-_pYbHNxdp-d2CGPWsvD7viJQ0aV3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583579009563-mikurii3l1c4m5gd4baissr7mnvu00lc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

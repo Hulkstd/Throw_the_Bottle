@@ -142,8 +142,8 @@ public class InputManager : MonoBehaviour
 
         Debug.Log("Rotation z " + Bottle.rotation.eulerAngles.z);
 
-        if ((0 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 10) ||
-            (350 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 360) ||
+        if ((-10 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 10) ||
+            (350 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 370) ||
             (170 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 190))
         {
             if (Physics2D.Raycast(Bottle.position + -Bottle.up * BottleCol.bounds.extents.y, -Bottle.up, 0.1f, 1 << 8))
