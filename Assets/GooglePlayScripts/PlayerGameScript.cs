@@ -1,6 +1,6 @@
-﻿using GooglePlayGames;
+﻿using UnityEngine;
+using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-using UnityEngine;
 
 public class PlayerGameScript : MonoBehaviour
 {
@@ -39,13 +39,13 @@ public class PlayerGameScript : MonoBehaviour
 
     void SignIn()
     {
-        if(!Social.localUser.authenticated)
+        if (!Social.localUser.authenticated)
         {
-            Social.localUser.Authenticate(success => 
+            Social.localUser.Authenticate(success =>
             {
                 texta.text = success.ToString();
 
-                if(!success)
+                if (!success)
                 {
                     SignIn();
                 }
@@ -54,7 +54,7 @@ public class PlayerGameScript : MonoBehaviour
     }
 
     #region LeaderBoards
-    
+
     public static void AddScoreToLeaderboard(string leaderboardId, long score)
     {
         Social.ReportScore(score, leaderboardId, success => { textb.text = success.ToString(); });
