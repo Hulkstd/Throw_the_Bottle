@@ -5,44 +5,73 @@ using UnityEngine.SceneManagement;
 
 public class EscapeBotten : MonoBehaviour
 {
+    SceneChanger sceneChanger;
 
     public string NowStage;
 
     private readonly string[] StageStr = { "Menu", "ModeChoose", "Campain" };
 
-    private bool InGame;
+    [SerializeField]
+    private GameObject Canvar;
+
+    private void Awake()
+    {
+        sceneChanger = SceneChanger.GetSceneChanger;   
+    }
 
     void Update()
     {
-        if (Application.platform == RuntimePlatform.Android)
+        //if (Application.platform == RuntimePlatform.Android)
         {
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKeyUp(KeyCode.Escape))
             {
                 switch (NowStage)
                 {
                     case "Menu":
-                        Application.Quit();
-                        break;
-                    case "ModeChoose":
-                        SceneManager.LoadScene(StageStr[0]);
-                        break;
-                    case "Option":
-                        SceneManager.LoadScene(StageStr[0]);
-                        break;
-                    case "Campain":
-                        SceneManager.LoadScene(StageStr[1]);
-                        break;
-                    case "TimeAttack":
-                        if (!InGame)
+                        if (Canvar)
                         {
-                            SceneManager.LoadScene(StageStr[1]);
+                            Canvar.SetActive(true);
                         }
                         break;
+                    case "ModeChoose":
+                        sceneChanger.ChangeScene(StageStr[0]);
+                        break;
+                    case "Option":
+                        sceneChanger.ChangeScene(StageStr[0]);
+                        break;
+                    case "Campain":
+                        sceneChanger.ChangeScene(StageStr[1]);
+                        break;
+                    case "TimeAttack":
+                        sceneChanger.ChangeScene(StageStr[1]);
+                        break;
                     case "Stage":
-                        SceneManager.LoadScene(StageStr[2]);
+                        sceneChanger.ChangeScene(StageStr[2]);
                         break;
                 }
             }
         }
     }
+
+    public void ClickedFalse()
+    {
+        if (Canvar)
+        {
+            Canvar.SetActive(false);
+        }
+        Debug.Log("FalseButton");
+    }
+
+    public void ClickedTrue()
+    {
+        Debug.Log("TrueButton");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
+        Application.OpenURL("http://google.com");
+#else
+        Application.Quit();
+#endif
+    }
+
 }
