@@ -33,6 +33,7 @@ public class StageModeUI : MonoBehaviour
         Debug.Log("BTM");
 
         sceneChanger.ChangeScene("Menu");
+        ParsingMap.SpawnSprite.Clear();
     }
 
     public void Retry()
@@ -63,7 +64,7 @@ public class StageModeUI : MonoBehaviour
 
         AfterOverGame.SetActive(false);
         
-        ParsingMap.Instante.SetStageNum(ParsingMap.Instante.StageNum + 1);
+        ParsingMap.Instante.SetStageNum(ParsingMap.StageNum + 1);
         ParsingMap.Instante.ParseMap();
     }
 

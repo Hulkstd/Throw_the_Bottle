@@ -6503,7 +6503,6 @@ GameObject:
   - component: {fileID: 1857108795}
   - component: {fileID: 1857108794}
   - component: {fileID: 1857108793}
-  - component: {fileID: 1857108796}
   m_Layer: 5
   m_Name: BackToStageSelect
   m_TagString: Untagged
@@ -6571,8 +6570,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1857108796}
-        m_MethodName: ChangeGameScene
+      - m_Target: {fileID: 1637090189}
+        m_MethodName: BackToMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6621,19 +6620,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857108791}
   m_CullTransparentMesh: 0
---- !u!114 &1857108796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857108791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3c9317aa6a92734b92b1cb3bebdb57d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneChanger: {fileID: 0}
 --- !u!1 &1862435400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1242698111733495287, guid: e90c8558826b9994c8adb3cd261975cd,

@@ -29,6 +29,7 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private Material mat;
 
+    private StageManager Manager;
     //private Vector2 direction;
     private static Dictionary<GameObject, Rigidbody2D> droppedWaters = new Dictionary<GameObject, Rigidbody2D>();
     public Vector2 startPos;
@@ -44,6 +45,7 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         timeAttack = GetComponent<TimeAttack>();
+        Manager = StageManager.Instance;
     }
 
     void Update()
@@ -159,6 +161,9 @@ public class InputManager : MonoBehaviour
                     ohAnim.Play("Ohhhh");
                     ohSound.Play();
                     isWin = true;
+
+                    Manager.IsSuccess[ParsingMap.StageNum + 1] = true;
+                    Manager.SaveStage();
                 }
                 startPos = endPos = Vector2.zero;
             }
@@ -175,6 +180,9 @@ public class InputManager : MonoBehaviour
                     ohAnim.Play("Ohhhh");
                     ohSound.Play();
                     isWin = true;
+
+                    Manager.IsSuccess[ParsingMap.StageNum + 1] = true;
+                    Manager.SaveStage();
                 }
                 startPos = endPos = Vector2.zero;
             }

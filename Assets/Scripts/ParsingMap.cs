@@ -14,9 +14,9 @@ using UnityEditor;
 
 public class ParsingMap : MonoBehaviour
 {
-    public int StageNum = 1;
+    public static int StageNum = 1;
     public GameObject Sprite;
-    public List<GameObject> SpawnSprite = new List<GameObject>();
+    public static List<GameObject> SpawnSprite = new List<GameObject>();
 
     private string Path = "StageMap\\Stage";
 
