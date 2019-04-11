@@ -21,14 +21,18 @@ public class CreateMap : MonoBehaviour
 
         using (StreamWriter streamWriter = new StreamWriter("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt"))
         {
-            streamWriter.WriteLine(Stage.transform.childCount);
+            int childCount = Stage.transform.childCount;
+
             for (int i = 0; i < Stage.transform.childCount; ++i)
             {
                 Transform child = Stage.transform.GetChild(i);
                 if (child.childCount > 0)
                 {
+                    childCount--;
+
                     for (int j = 0; j < child.childCount; ++j)
                     {
+                        childCount++;
                         gameObjects.Add(child.GetChild(j));
                     }
                 }
@@ -37,6 +41,8 @@ public class CreateMap : MonoBehaviour
                     gameObjects.Add(child);
                 }
             }
+
+            streamWriter.WriteLine(childCount);
 
             for (int i = 0; i < gameObjects.Count; i++)
             {

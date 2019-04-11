@@ -4,14 +4,9 @@ using GooglePlayGames.BasicApi;
 
 public class PlayerGameScript : MonoBehaviour
 {
-    [SerializeField]
-    public UnityEngine.UI.Text texta;
-
-    public static UnityEngine.UI.Text textb;
 
     void Start()
     {
-        textb = texta;
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             var dependencyStatus = task.Result;
             if (dependencyStatus == Firebase.DependencyStatus.Available)
@@ -31,7 +26,6 @@ public class PlayerGameScript : MonoBehaviour
         });
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
         PlayGamesPlatform.InitializeInstance(config);
-        PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
 
         SignIn();
@@ -43,8 +37,6 @@ public class PlayerGameScript : MonoBehaviour
         {
             Social.localUser.Authenticate(success =>
             {
-                texta.text = success.ToString();
-
                 if (!success)
                 {
                     SignIn();
@@ -57,7 +49,7 @@ public class PlayerGameScript : MonoBehaviour
 
     public static void AddScoreToLeaderboard(string leaderboardId, long score)
     {
-        Social.ReportScore(score, leaderboardId, success => { textb.text = success.ToString(); });
+        Social.ReportScore(score, leaderboardId, success => { });
     }
 
     public static void ShowLeaderboardsUI()
