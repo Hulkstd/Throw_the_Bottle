@@ -164,6 +164,7 @@ public class InputManager : MonoBehaviour
 
                     Manager.IsSuccess[ParsingMap.StageNum + 1] = true;
                     Manager.SaveStage();
+                    UnityAdsHelper.Instance.ShowAd();
                 }
                 startPos = endPos = Vector2.zero;
             }
@@ -183,6 +184,7 @@ public class InputManager : MonoBehaviour
 
                     Manager.IsSuccess[ParsingMap.StageNum + 1] = true;
                     Manager.SaveStage();
+                    UnityAdsHelper.Instance.ShowAd();
                 }
                 startPos = endPos = Vector2.zero;
             }

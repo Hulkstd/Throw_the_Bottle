@@ -6,16 +6,25 @@ using UnityEngine.Advertisements;
 
 public class UnityAdsHelper : MonoBehaviour
 {
+    public static UnityAdsHelper Instance { get; private set; }
+
     private const string android_game_id = "3110616";
     private const string ios_game_id = "3110617";
 
     private const string rewarded_video_id = "rewardedVideo";
+    private const string video_id = "video";
+    private const string banner_id = "banner";
 
-    public UnityEngine.UI.Text text;
+    private int FuncCallCount = 0;
+
 
     void Start()
     {
+        Instance = this;
+
+        DontDestroyOnLoad(gameObject);
         Initialize();
+        StartCoroutine(ShowBannerWhenReady());
     }
 
     private void Initialize()
@@ -29,17 +38,49 @@ public class UnityAdsHelper : MonoBehaviour
 
     public void ShowRewardedAd()
     {
-        text.text = Advertisement.IsReady(rewarded_video_id).ToString();
+        //text.text = Advertisement.IsReady(rewarded_video_id).ToString();
 
-        if(Advertisement.IsReady(rewarded_video_id))
+        FuncCallCount++;
+
+        if(FuncCallCount < 3)
+        {
+            return;
+        }
+
+        FuncCallCount = 0;
+
+        if (Advertisement.IsReady(rewarded_video_id))
         {
             var options = new ShowOptions { resultCallback = HandleShowResult };
+
+            Advertisement.Show(rewarded_video_id, options);
+        }
+    }
+
+    public void ShowAd()
+    {
+        //text.text = Advertisement.IsReady(video_id).ToString();
+
+        FuncCallCount++;
+
+        if (FuncCallCount < 3)
+        {
+            return;
+        }
+
+        FuncCallCount = 0;
+
+        if (Advertisement.IsReady(video_id))
+        {
+            var options = new ShowOptions { resultCallback = HandleShowResult };
+
+            Advertisement.Show(video_id, options);
         }
     }
 
     private void HandleShowResult(ShowResult result)
     {
-        switch(result)
+        switch (result)
         {
             case ShowResult.Finished:
                 {
@@ -67,6 +108,19 @@ public class UnityAdsHelper : MonoBehaviour
                     // 광고 시청에 실패했을 때 처리
                 }
                 break;
+        }
+    }
+
+    IEnumerator ShowBannerWhenReady()
+    {
+        while (true)
+        {
+            while (!Advertisement.IsReady(banner_id))
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            Advertisement.Show(banner_id);
         }
     }
 }
