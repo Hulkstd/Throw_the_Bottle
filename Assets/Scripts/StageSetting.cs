@@ -37,7 +37,7 @@ public class StageSetting : MonoBehaviour
                 button.onClick.AddListener(delegate () { stageSelector.EnterStage(button.gameObject.transform.GetChild(0).GetComponent<Text>()); });
                 button.onClick.AddListener(delegate () { Buttons.ForEach(b => { b.interactable = false; } ); });
                 button.gameObject.transform.GetChild(0).GetComponent<Text>().text = i.ToString();
-                button.interactable = manager.IsSuccess[i];
+              //  button.interactable = manager.IsSuccess[i];
                 
                 i++;
 
