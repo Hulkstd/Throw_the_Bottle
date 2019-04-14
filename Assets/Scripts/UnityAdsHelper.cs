@@ -24,7 +24,7 @@ public class UnityAdsHelper : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         Initialize();
-        StartCoroutine(ShowBannerWhenReady());
+        StartCoroutine(BannerLoop());
     }
 
     private void Initialize()
@@ -111,16 +111,20 @@ public class UnityAdsHelper : MonoBehaviour
         }
     }
 
-    IEnumerator ShowBannerWhenReady()
+    IEnumerator BannerLoop()
     {
-        while (true)
+        while(true)
         {
-            while (!Advertisement.IsReady(banner_id))
-            {
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            Advertisement.Show(banner_id);
+            yield return ShowBannerWhenReady();
         }
+    }
+
+    IEnumerator ShowBannerWhenReady()
+    { 
+        while (!Advertisement.IsReady(banner_id))
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        Advertisement.Show(banner_id);
     }
 }
