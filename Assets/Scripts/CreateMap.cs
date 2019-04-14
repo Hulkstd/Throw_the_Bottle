@@ -9,9 +9,13 @@ public class CreateMap : MonoBehaviour
     public GameObject BGImage;
     public List<Transform> gameObjects = new List<Transform>();
     public UnityEngine.UI.InputField input;
+    public int Count;
 
     public void CreateTextFile()
     {
+        Count = 0;
+        gameObjects.Clear();
+
         DirectoryInfo di = new DirectoryInfo("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt");
         if (di.Exists)
         {
@@ -21,7 +25,7 @@ public class CreateMap : MonoBehaviour
 
         using (StreamWriter streamWriter = new StreamWriter("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt"))
         {
-            streamWriter.WriteLine(Stage.transform.childCount);
+            
             for (int i = 0; i < Stage.transform.childCount; ++i)
             {
                 Transform child = Stage.transform.GetChild(i);
@@ -29,14 +33,18 @@ public class CreateMap : MonoBehaviour
                 {
                     for (int j = 0; j < child.childCount; ++j)
                     {
+                        Count++;
                         gameObjects.Add(child.GetChild(j));
                     }
                 }
                 else
                 {
+                    Count++;
                     gameObjects.Add(child);
                 }
             }
+
+            streamWriter.WriteLine(Count.ToString());
 
             for (int i = 0; i < gameObjects.Count; i++)
             {

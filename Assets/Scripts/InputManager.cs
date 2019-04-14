@@ -189,7 +189,7 @@ public class InputManager : MonoBehaviour
                 startPos = endPos = Vector2.zero;
             }
         }
-        //Debug.Log("Reset");
+        Debug.Log("Reset");
         Bottle.position = new Vector2(-2.7f, 0.5f);
         BottleRd2d.velocity = Vector2.zero;
         BottleRd2d.angularVelocity = 0.0f;
