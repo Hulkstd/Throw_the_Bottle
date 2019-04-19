@@ -30,6 +30,7 @@ public class CreateMap : MonoBehaviour
                 Transform child = Stage.transform.GetChild(i);
                 if (child.childCount > 0)
                 {
+                    Vector3 Scale = child.localScale;
                     for (int j = 0; j < child.childCount; ++j)
                     {
                         Count++;
@@ -51,7 +52,7 @@ public class CreateMap : MonoBehaviour
 
                 string str = $"sprite {game.position.x} {game.position.y} " +
                              $"{game.rotation.eulerAngles.x} {game.rotation.eulerAngles.y} {game.rotation.eulerAngles.z} " +
-                             $"{game.localScale.x} {game.localScale.y}";
+                             $"{game.lossyScale.x} {game.lossyScale.y}";
 
                 streamWriter.WriteLine(str);
             }
@@ -66,10 +67,36 @@ public class CreateMap : MonoBehaviour
 
                     string str = $"bg {SP.sprite.name} {SP.transform.position.x} {SP.transform.position.y}" +
                                  $"{SP.transform.rotation.eulerAngles.x} {SP.transform.rotation.eulerAngles.y} {SP.transform.rotation.eulerAngles.z}" +
-                                 $"{SP.transform.localScale.x} {SP.transform.localScale.x}";
+                                 $"{SP.transform.lossyScale.x} {SP.transform.lossyScale.x}";
 
                     streamWriter.WriteLine(str);
                 }
+            }
+        }
+    }
+
+    public void UnPasing()
+    {
+        for (int i = Stage.transform.childCount - 1; i >= 0; --i)
+        {
+            Destroy(Stage.transform.GetChild(i).gameObject);
+        }
+
+        using (StreamReader streamReader = new StreamReader("Assets\\Resources\\StageMap\\Stage" + input.text + ".txt"))
+        {
+            int n = int.Parse(streamReader.ReadLine());
+
+            for (int i = 0; i < n; i++)
+            {
+                string str = streamReader.ReadLine();
+
+                string[] line = str.Split(' ');
+
+                Transform trans = Instantiate(Resources.Load<Transform>("Terrain"));
+                trans.position = new Vector3(float.Parse(line[1]), float.Parse(line[2]));
+                trans.eulerAngles = new Vector3(float.Parse(line[3]), float.Parse(line[4]), float.Parse(line[5]));
+                trans.localScale = new Vector3(float.Parse(line[6]), float.Parse(line[7]), 1);
+                trans.SetParent(Stage.transform);
             }
         }
     }
