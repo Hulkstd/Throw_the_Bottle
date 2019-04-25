@@ -42,7 +42,7 @@
  
  진우: UI, 맵 양산
  
- 태형: 물병 움직임 구현, UI, Bug Fixer, parsing script구현
+ 태형: 물병 움직임 구현, UI, Bug Fixer, parsing script구현, 입력 리펙토링, 전채적인 코드 
  
  승걸: 입력(드래그)
  
@@ -51,8 +51,7 @@
 화면 크기: 9:16
 
 TODO)
- 
- 스테이지 양산
+
 
 CREDIT)
 
