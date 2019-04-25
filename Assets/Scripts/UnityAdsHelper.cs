@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GooglePlayGames.BasicApi;
+using GooglePlayGames;
 using UnityEngine.Advertisements;
 
 public class UnityAdsHelper : MonoBehaviour
@@ -14,7 +16,7 @@ public class UnityAdsHelper : MonoBehaviour
     private const string rewarded_video_id = "rewardedVideo";
     private const string video_id = "video";
     private const string banner_id = "banner";
-
+     
     private int FuncCallCount = 0;
 
 
