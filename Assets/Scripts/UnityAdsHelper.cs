@@ -65,7 +65,7 @@ public class UnityAdsHelper : MonoBehaviour
 
         FuncCallCount++;
 
-        if (FuncCallCount < 3)
+        if (FuncCallCount < 100)
         {
             return;
         }

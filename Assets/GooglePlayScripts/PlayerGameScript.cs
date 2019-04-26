@@ -4,11 +4,8 @@ using GooglePlayGames.BasicApi;
 
 public class PlayerGameScript : MonoBehaviour
 {
-
     void Start()
     {
-        Screen.SetResolution(Screen.width, (Screen.width * 9) / 16, true);
-
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             var dependencyStatus = task.Result;
             if (dependencyStatus == Firebase.DependencyStatus.Available)
