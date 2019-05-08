@@ -48,6 +48,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeScene(string Scenename)
     {
+        image.raycastTarget = true;
         StartCoroutine(FadeOut(Scenename));
     }
 
@@ -60,6 +61,8 @@ public class SceneChanger : MonoBehaviour
             image.color -= new Color(0, 0, 0, fadeSpeed * Time.deltaTime);
             yield return new WaitForSeconds(0.05f);
         }
+
+        image.raycastTarget = false;
     }
 
     private IEnumerator FadeOut(string SceneName)
