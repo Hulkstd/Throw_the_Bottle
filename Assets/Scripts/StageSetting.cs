@@ -29,15 +29,15 @@ public class StageSetting : MonoBehaviour
         StageManager manager = StageManager.Instance;
         manager.LoadData();
 
-        for (float Width = 0; Width < ContentSize.x - Merge.x; Width += Merge.x + ButtonSize.x)
+        for (float Height = 0; Height < ContentSize.y - Merge.y; Height += Merge.y + ButtonSize.y)
         {
-            for (float Height = 0; Height < ContentSize.y - Merge.y; Height += Merge.y + ButtonSize.y)
+            for (float Width = 0; Width < ContentSize.x - Merge.x; Width += Merge.x + ButtonSize.x)
             {
                 Button button = Instantiate(StageButtonPR, Content, false);
                 button.onClick.AddListener(delegate () { stageSelector.EnterStage(button.gameObject.transform.GetChild(0).GetComponent<Text>()); });
                 button.onClick.AddListener(delegate () { Buttons.ForEach(b => { b.interactable = false; } ); });
                 button.gameObject.transform.GetChild(0).GetComponent<Text>().text = i.ToString();
-              //  button.interactable = manager.IsSuccess[i];
+                button.interactable = manager.IsSuccess[i];
                 
                 i++;
 

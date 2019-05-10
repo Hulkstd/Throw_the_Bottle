@@ -61,7 +61,9 @@ public class SaveData
 
     public SaveData(StageManager stageManager)
     {
-        for (int i = 1; i <= StageManager.StageCount; i++) 
+        HasTutorial[1] = false;
+        IsSuccess[1] = true;
+        for (int i = 2; i <= StageManager.StageCount; i++) 
         {
             HasTutorial[i] = stageManager.HasTutorial[i];
             IsSuccess[i] = stageManager.IsSuccess[i];
@@ -70,7 +72,9 @@ public class SaveData
 
     public SaveData() // Default SaveData
     {
-        for(int i=1; i<=StageManager.StageCount; i++)
+        HasTutorial[1] = false;
+        IsSuccess[1] = true;
+        for (int i = 2; i <= StageManager.StageCount; i++) 
         {
             HasTutorial[i] = false;
             IsSuccess[i] = false;
