@@ -40,7 +40,7 @@ public class StageManager : MonoBehaviour
     {
         SaveData data = SaveSystem.LoadData();
 
-        for(int i=1; i<=StageCount; i++)
+        for (int i = 1; i <= StageCount; i++)
         {
             HasTutorial[i] = data.HasTutorial[i];
             IsSuccess[i] = data.IsSuccess[i];

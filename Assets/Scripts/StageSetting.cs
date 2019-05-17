@@ -16,37 +16,88 @@ public class StageSetting : MonoBehaviour
     [Tooltip("This Vector2 is Content's width and height")]
     public Vector2 ContentSize;
 
-    public Transform Content;
+    public RectTransform Content;
+    public static int ContentsCount;
 
     private List<Button> Buttons;
+    private List<RectTransform> Contents;
 
     private void Awake()
     {
-        Vector2 Position = BasePosition;
         Buttons = new List<Button>();
-        int i = 1;
+        Contents = new List<RectTransform>();
+        int StageNumber = 1;
+        int StageMax = Resources.LoadAll("StageMap").Length;
+        RectTransform PivotObj;
+
+        int buf = StageMax;
+        int Count = 0;
+
+        while (buf > 0)
+        {
+            Count++;
+            buf -= 28;
+        }
+
+        for (int j = 0; j < Count; ++j)
+        {
+            Contents.Add(Instantiate(new GameObject().AddComponent<RectTransform>(), Content));
+            if (j > 0)
+                Contents[j].anchoredPosition = Contents[j - 1].anchoredPosition + new Vector2(1100, 0);
+            else
+                Contents[j].anchoredPosition = new Vector2(-1667, 0);
+            Contents[j].sizeDelta = new Vector2(1100, 1800);
+            Contents[j].name = "Content";
+            PivotObj = Instantiate(new GameObject().AddComponent<RectTransform>(), Contents[j]);
+            PivotObj.anchoredPosition = new Vector2(-550, 900);
+            PivotObj.name = "PivotObj";
+        }
+
+        ContentsCount = Contents.Count;
 
         StageManager manager = StageManager.Instance;
         manager.LoadData();
 
-        for (float Height = 0; Height < ContentSize.y - Merge.y; Height += Merge.y + ButtonSize.y)
+        // button Instantiate
+
+        Vector2 Pivot;
+        float[] arr = { -350, -125, 125, 350 };
+        bool IsOut = false;
+
+        for (int j = 0; j < Contents.Count; ++j)
         {
-            for (float Width = 0; Width < ContentSize.x - Merge.x; Width += Merge.x + ButtonSize.x)
+            Pivot = Contents[j].GetChild(0).localPosition;
+            for (float Height = Pivot.y - 150; Height > Contents[j].anchoredPosition.y - 900; Height -= ButtonSize.y + Merge.y)
             {
-                Button button = Instantiate(StageButtonPR, Content, false);
-                button.onClick.AddListener(delegate () { stageSelector.EnterStage(button.gameObject.transform.GetChild(0).GetComponent<Text>()); });
-                button.onClick.AddListener(delegate () { Buttons.ForEach(b => { b.interactable = false; } ); });
-                button.gameObject.transform.GetChild(0).GetComponent<Text>().text = i.ToString();
-                button.interactable = manager.IsSuccess[i];
-                
-                i++;
+                for (int k = 0; k < 4; ++k)
+                {
+                    if (StageNumber > StageMax)
+                    {
+                        IsOut = true;
+                        break;
+                    }
 
-                //Debug.Log(Width + " " + Height);
+                    Button button = Instantiate(StageButtonPR, Contents[j], false);
+                    button.onClick.AddListener(delegate () { stageSelector.EnterStage(button.gameObject.transform.GetChild(0).GetComponent<Text>()); });
+                    button.onClick.AddListener(delegate () { Buttons.ForEach(b => { b.interactable = false; }); });
+                    button.transform.GetChild(0).GetComponent<Text>().text = StageNumber.ToString();
+                    button.interactable = manager.IsSuccess[StageNumber];
+                    button.GetComponent<RectTransform>().sizeDelta = ButtonSize;
+                    StageNumber++;
 
-                button.gameObject.GetComponent<RectTransform>().localPosition -= new Vector3(-Width, Height);
+                    button.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(arr[k], Height);
 
-                Buttons.Add(button);
+                    Buttons.Add(button);
+                }
+
+                if (IsOut)
+                {
+                    IsOut = false;
+                    break;
+                }
             }
+
         }
+
     }
 }
