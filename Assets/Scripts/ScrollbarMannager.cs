@@ -8,7 +8,6 @@ public class ScrollbarMannager : MonoBehaviour
 
     public Scrollbar Scrollbar;
     private float value;
-    private float ScrollValue;
     private float StartValue;
     private Vector2 StartPos;
     private Vector2 EndPos;
@@ -29,25 +28,32 @@ public class ScrollbarMannager : MonoBehaviour
             StartPos = Input.mousePosition;
             StartValue = Scrollbar.value;
         }
-        else if (Input.GetMouseButtonUp(0))
+
+        if (Input.GetMouseButtonUp(0))
         {
             EndPos = Input.mousePosition;
-            ScrollValue = Vector2.Distance(StartPos, EndPos);
             ScrollbarValueChange();
         }
     }
 
     private void ScrollbarValueChange()
     {
-        if (value / 2 < ScrollValue) {
-            if (StartPos.x > EndPos.x) {
-                if (Scrollbar.value < 1 - value) Scrollbar.value = StartValue + value;
+        if (value / 2 < Mathf.Abs(Scrollbar.value - StartValue))
+        {
+            if (StartPos.x > EndPos.x)
+            {
+                if (Mathf.Abs(Scrollbar.value - StartValue) < 1 - value) Scrollbar.value = StartValue + value;
                 else Scrollbar.value = 1;
             }
-            else {
-                if (ScrollValue > value) Scrollbar.value = StartValue - value;
+            else
+            {
+                if (Mathf.Abs(Scrollbar.value - StartValue) > value) Scrollbar.value = StartValue - value;
                 else Scrollbar.value = 0;
             }
+        }
+        else
+        {
+            Scrollbar.value = StartValue;
         }
     }
 }
