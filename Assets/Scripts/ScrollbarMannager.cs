@@ -14,14 +14,11 @@ public class ScrollbarMannager : MonoBehaviour
     private bool IsScroll;
     private float Value;
 
-    private float OneFramePrevValue;
-
     private float StartValue;
     private float EndValue;
 
     private float TargetValue;
-    private Coroutine routine;
-
+   
     private void Start()
     {
         IsScroll = true;
@@ -66,8 +63,10 @@ public class ScrollbarMannager : MonoBehaviour
     {
         TargetValue = StartValue + (IsIncrease ? Value : -Value);
 
+        Debug.Log("Do Coroutine  target : " + TargetValue);
+
         while (Scrollbar.value != TargetValue) {
-            Debug.Log("Do Coroutine  target : " + TargetValue);
+            IsIncrease = TargetValue > Scrollbar.value ? true : false;
             if (Mathf.Abs(TargetValue - Scrollbar.value) < IncreaseValue)
             {
                 Scrollbar.value = TargetValue;
