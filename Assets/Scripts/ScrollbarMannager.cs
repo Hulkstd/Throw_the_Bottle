@@ -5,55 +5,79 @@ using UnityEngine.UI;
 
 public class ScrollbarMannager : MonoBehaviour
 {
+    [SerializeField]
+    private Scrollbar Scrollbar;
 
-    public Scrollbar Scrollbar;
-    private float value;
+    private float IncreaseValue;
+
+    private bool IsIncrease;
+    private bool IsScroll;
+    private float Value;
+
+    private float OneFramePrevValue;
+
     private float StartValue;
-    private Vector2 StartPos;
-    private Vector2 EndPos;
-    
+    private float EndValue;
 
-    // Start is called before the first frame update
-    void Start()
+    private float TargetValue;
+    private Coroutine routine;
+
+    private void Start()
     {
-        Scrollbar.value = 0;
-        value = 1 / (float)(StageSetting.ContentsCount - 1);
+        IsScroll = true;
+        Value = 1f / (StageSetting.ContentsCount - 1);
+        IncreaseValue = Value / 10;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (IsScroll)
         {
-            StartPos = Input.mousePosition;
-            StartValue = Scrollbar.value;
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            EndPos = Input.mousePosition;
-            ScrollbarValueChange();
-        }
-    }
-
-    private void ScrollbarValueChange()
-    {
-        if (value / 2 < Mathf.Abs(Scrollbar.value - StartValue))
-        {
-            if (StartPos.x > EndPos.x)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Mathf.Abs(Scrollbar.value - StartValue) < 1 - value) Scrollbar.value = StartValue + value;
-                else Scrollbar.value = 1;
+                Debug.Log("Down");
+                StartValue = Scrollbar.value;
             }
-            else
+            if (Input.GetMouseButtonUp(0))
             {
-                if (Mathf.Abs(Scrollbar.value - StartValue) > value) Scrollbar.value = StartValue - value;
-                else Scrollbar.value = 0;
+                Debug.Log("Up");
+                EndValue = Scrollbar.value;
+                if (StartValue < EndValue) { IsIncrease = true; }
+                else if (StartValue > EndValue) { IsIncrease = false; }
+                else { return; }
+                IsIncrease = StartValue < EndValue ? true : false;
+
+                Debug.Log("Scrollbar value : " + Scrollbar.value + " IsIncrease " + IsIncrease);
+                Debug.Log(" + ? => " + !(Scrollbar.value == 1 && IsIncrease) + " - ? ->" + !(Scrollbar.value == 0 && !IsIncrease));
+
+                if (!(Scrollbar.value == 1 && IsIncrease) && !(Scrollbar.value == 0 && !IsIncrease))
+                {
+                    Debug.Log("Start Coroutine");
+                    IsScroll = false;
+                    StartCoroutine("DoScroll");
+                }
             }
         }
-        else
-        {
-            Scrollbar.value = StartValue;
-        }
+        
+
     }
+
+    IEnumerator DoScroll()
+    {
+        TargetValue = StartValue + (IsIncrease ? Value : -Value);
+
+        while (Scrollbar.value != TargetValue) {
+            Debug.Log("Do Coroutine  target : " + TargetValue);
+            if (Mathf.Abs(TargetValue - Scrollbar.value) < IncreaseValue)
+            {
+                Scrollbar.value = TargetValue;
+                break;
+            }
+            Scrollbar.value += IsIncrease ? IncreaseValue : -IncreaseValue;
+            yield return new WaitForSeconds(0.025f);
+        }
+
+        IsScroll = true;
+    }
+
 }

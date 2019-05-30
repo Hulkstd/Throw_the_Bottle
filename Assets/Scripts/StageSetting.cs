@@ -84,9 +84,10 @@ public class StageSetting : MonoBehaviour
                     button.interactable = manager.IsSuccess[StageNumber];
                     button.targetGraphic = button.transform.GetChild(0).GetComponent<Text>();
                     button.GetComponent<RectTransform>().sizeDelta = ButtonSize;
-                    StageNumber++;
-
+                    button.name = "Button" + StageNumber.ToString();
                     button.gameObject.GetComponent<RectTransform>().localPosition = new Vector3(arr[k], Height);
+
+                    StageNumber++;
 
                     Buttons.Add(button);
                 }
