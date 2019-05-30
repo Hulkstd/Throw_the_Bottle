@@ -83,31 +83,13 @@ public class InputManager : MonoBehaviour
     private void ThrowBottle()
     {
         Vector2 vec = (endPos - startPos);
-        Debug.Log(vec.sqrMagnitude);
-        float angle = Mathf.Acos(Vector2.Dot(vec.normalized, Vector2.right)) * Mathf.Rad2Deg;
-        //dot ab = cos theta = x
-        //acos x = theta
-
-        if (angle >= 80.0f || angle <= 10.0f)
+        
+        if(vec.sqrMagnitude <= 10)
         {
-            Debug.Log("throw lower or higher");
             return;
         }
-        if (vec.sqrMagnitude < 50.0f)
-        {
-            Debug.Log("Throw stronger");
-            return;
-        }
-        /* if (vec.sqrMagnitude >= 50000.0f)
-         {
-             vec.Normalize();
-             vec *= 800.0f;
-         }*/
-        if (vec.sqrMagnitude >= 50.0f)
-        {
-            vec *= 80f;
-        }
 
+        vec *= 80f;
         throwSound.Play();
         BottleRd2d.AddForceAtPosition(vec, Bottle.position + Vector3.down * BottleCol.bounds.size.y);
         hand.SetActive(false);
@@ -142,7 +124,7 @@ public class InputManager : MonoBehaviour
         }
         );
 
-        Debug.Log("Rotation z " + Bottle.rotation.eulerAngles.z);
+        //Debug.Log("Rotation z " + Bottle.rotation.eulerAngles.z);
 
         if ((-10 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 10) ||
             (350 <= Bottle.rotation.eulerAngles.z && Bottle.rotation.eulerAngles.z <= 370) ||
@@ -157,7 +139,7 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("ohhhh");
+                    //Debug.Log("ohhhh");
                     ohAnim.Play("Ohhhh");
                     ohSound.Play();
                     isWin = true;
@@ -177,7 +159,7 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("ohhhh");
+                    //Debug.Log("ohhhh");
                     ohAnim.Play("Ohhhh");
                     ohSound.Play();
                     isWin = true;
@@ -189,13 +171,13 @@ public class InputManager : MonoBehaviour
                 startPos = endPos = Vector2.zero;
             }
         }
-        Debug.Log("Reset");
+        //Debug.Log("Reset");
         Bottle.position = new Vector2(-2.7f, 0.5f);
         BottleRd2d.velocity = Vector2.zero;
         BottleRd2d.angularVelocity = 0.0f;
         Bottle.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
-        Debug.Log(droppedWaters.Count);
+        //Debug.Log(droppedWaters.Count);
 
         foreach (var g in droppedWaters)
         {

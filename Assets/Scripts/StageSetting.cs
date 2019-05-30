@@ -82,6 +82,7 @@ public class StageSetting : MonoBehaviour
                     button.onClick.AddListener(delegate () { Buttons.ForEach(b => { b.interactable = false; }); });
                     button.transform.GetChild(0).GetComponent<Text>().text = StageNumber.ToString();
                     button.interactable = manager.IsSuccess[StageNumber];
+                    button.targetGraphic = button.transform.GetChild(0).GetComponent<Text>();
                     button.GetComponent<RectTransform>().sizeDelta = ButtonSize;
                     StageNumber++;
 

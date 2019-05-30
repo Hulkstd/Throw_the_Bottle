@@ -28,19 +28,7 @@ public class DrawLine : MonoBehaviour
 
         float angle = Mathf.Acos(Vector2.Dot(vec.normalized, Vector2.right)) * Mathf.Rad2Deg;
         Color color = new Color();
-
-        if (vec.sqrMagnitude < 50.0f)
-        {
-            color = Color.red;
-        }
-        else if (vec.sqrMagnitude >= 50.0f)
-        {
-            color = Color.white;
-        }
-        if (angle >= 80.0f || angle <= 10.0f)
-        {
-            color = Color.red;
-        }
+        color = Color.white;
 
         GL.PushMatrix();
         mat.SetPass(0);
@@ -48,7 +36,7 @@ public class DrawLine : MonoBehaviour
     
         GL.Begin(GL.LINES);
         GL.Color(color);
-        Debug.LogWarning(Camera.main.WorldToViewportPoint(IM.startPos) - Vector3.forward * 10);
+        //  Debug.LogWarning(Camera.main.WorldToViewportPoint(IM.startPos) - Vector3.forward * 10);
         GL.Vertex(Camera.main.WorldToViewportPoint(IM.startPos) - Vector3.forward * 10);
         GL.Vertex(Camera.main.WorldToViewportPoint(IM.endPos) - Vector3.forward * 10);
         GL.End();

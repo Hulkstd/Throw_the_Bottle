@@ -4,79 +4,113 @@ using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
-using UnityEngine.Advertisements;
+using UnityEngine.Monetization;
 
 public class UnityAdsHelper : MonoBehaviour
 {
     public static UnityAdsHelper Instance { get; private set; }
 
-    private const string android_game_id = "3110616";
-    private const string ios_game_id = "3110617";
+#if UNITY_ANDROID
+    private const string game_id = "3110616";
+#elif UNITY_IOS
+    private const string game_id = "3110617";
+#elif UNITY_EDITOR
+    private const string game_id = "1111111";
+#endif
 
     private const string rewarded_video_id = "rewardedVideo";
     private const string video_id = "video";
     private const string banner_id = "banner";
-     
-    private int FuncCallCount = 0;
 
+    [SerializeField]
+    private int FuncCallCount = 0;
+    [SerializeField]
+    private UnityEngine.UI.Text text;
+    private bool BannerEnd = true;
+
+    private void Awake()
+    {
+        if(UnityAdsHelper.Instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            UnityAdsHelper.Instance = this;
+        }
+        DontDestroyOnLoad(this);
+    }
 
     void Start()
     {
-        Instance = this;
 
-        DontDestroyOnLoad(gameObject);
+        Debug.Log("1");
+        Debug.Log(Monetization.isInitialized.ToString());
+        text.text = Monetization.isInitialized.ToString();
         Initialize();
+        Debug.Log("3");
+        Debug.Log(Monetization.isInitialized.ToString());
+        text.text = Monetization.isInitialized.ToString();
+        Debug.Log("4");
         StartCoroutine(BannerLoop());
     }
 
     private void Initialize()
     {
-#if UNITY_ANDROID
-        Advertisement.Initialize(android_game_id);
-#elif UNITY_IOS
-        Advertisement.Initialize(ios_game_id);
-#endif
+        Debug.Log("2");
+
+        Debug.Log(Monetization.isSupported.ToString());
+        if (Monetization.isSupported)
+        {
+            Monetization.Initialize(game_id, false);
+        }
     }
 
     public void ShowRewardedAd()
     {
-        //text.text = Advertisement.IsReady(rewarded_video_id).ToString();
-
         FuncCallCount++;
 
-        if(FuncCallCount < 3)
+        if (FuncCallCount < 3)
         {
             return;
         }
 
         FuncCallCount = 0;
 
-        if (Advertisement.IsReady(rewarded_video_id))
+        if (Monetization.IsReady(video_id))
         {
-            var options = new ShowOptions { resultCallback = HandleShowResult };
-
-            Advertisement.Show(rewarded_video_id, options);
+            ShowAdPlacementContent ad = null;
+            ad = Monetization.GetPlacementContent(video_id) as ShowAdPlacementContent;
+            
+            if(ad != null)
+            {
+                ad.Show();
+            }
         }
     }
 
     public void ShowAd()
     {
-        //text.text = Advertisement.IsReady(video_id).ToString();
-
         FuncCallCount++;
+        Debug.Log(FuncCallCount);
 
-        if (FuncCallCount < 100)
+        if (FuncCallCount < 3)
         {
             return;
         }
 
         FuncCallCount = 0;
 
-        if (Advertisement.IsReady(video_id))
+        if (Monetization.IsReady(video_id))
         {
-            var options = new ShowOptions { resultCallback = HandleShowResult };
+            Debug.Log("Video Ready!");
+            ShowAdPlacementContent ad = null;
+            ad = Monetization.GetPlacementContent(video_id) as ShowAdPlacementContent;
 
-            Advertisement.Show(video_id, options);
+            if (ad != null)
+            {
+                ad.Show();
+            }
         }
     }
 
@@ -115,18 +149,46 @@ public class UnityAdsHelper : MonoBehaviour
 
     IEnumerator BannerLoop()
     {
-        while(true)
+        while (true)
         {
-            yield return ShowBannerWhenReady();
+            yield return StartCoroutine(ShowBannerWhenReady());
+
+            while (true)
+            {
+                if (BannerEnd)
+                {
+                    Debug.Log("Banner");
+                    yield return new WaitForSeconds(30.0f);
+                    break;
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
         }
     }
 
     IEnumerator ShowBannerWhenReady()
-    { 
-        while (!Advertisement.IsReady(banner_id))
+    {
+        Debug.Log("Banner NotReady");
+        while (!Monetization.IsReady(banner_id))
         {
             yield return new WaitForSeconds(0.5f);
         }
-        Advertisement.Show(banner_id);
+        Debug.Log("Banner Ready");
+        BannerEnd = false;
+
+        ShowAdPlacementContent ad = null;
+        ad = Monetization.GetPlacementContent(banner_id) as ShowAdPlacementContent;
+
+        if (ad != null)
+        {
+            ad.Show((ShowResult result) => 
+            {
+                BannerEnd = true;
+                Debug.Log("Banner Off");
+            });
+        }
     }
 }

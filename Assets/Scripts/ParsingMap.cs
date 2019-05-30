@@ -53,7 +53,7 @@ public class ParsingMap : MonoBehaviour
 
     public void ResetMap()
     {
-        Debug.Log(SpawnSprite.Count);
+        //Debug.Log(SpawnSprite.Count);
 
         for (int i = 0; i < SpawnSprite.Count; i++)
         {

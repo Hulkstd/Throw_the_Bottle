@@ -1,5 +1,5 @@
-lastUpgrade=00962
-proj.pluginVersion=0.9.62
+lastUpgrade=00964
+proj.pluginVersion=0.9.64
 proj.AppId=749874922907
 proj.classDir=Assets%2fGooglePlayScripts
 proj.ConstantsClassName=GPGSIds
