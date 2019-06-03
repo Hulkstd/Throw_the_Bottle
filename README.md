@@ -51,7 +51,7 @@
 화면 크기: 9:16
 
 TODO)
-
+ 버그 발생시 fixing, 불만사항 발생시 바꾸기, 개선사항 발견시 상의후 
 
 CREDIT)
 
@@ -62,7 +62,4 @@ CREDIT)
  배경음 및 효과음 2 : https://soundeffect-lab.info/
  
  일부 사진 : https://pixabay.com/ko/
- 
- 버그 최다 발견자 
-  최이삭
  
