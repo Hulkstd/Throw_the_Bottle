@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEditor;
+using System;
 
 /*
  * 파싱 형식
@@ -57,7 +57,14 @@ public class ParsingMap : MonoBehaviour
 
         for (int i = 0; i < SpawnSprite.Count; i++)
         {
-            SpawnSprite[i].SetActive(false);
+            try
+            {
+                SpawnSprite[i].SetActive(false);
+            }
+            catch(Exception e)
+            {
+
+            }
         }
 
         SpawnSprite.Clear();

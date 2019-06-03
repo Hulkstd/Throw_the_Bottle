@@ -84,7 +84,7 @@ public class InputManager : MonoBehaviour
     {
         Vector2 vec = (endPos - startPos);
         
-        if(vec.sqrMagnitude <= 10)
+        if(vec.sqrMagnitude <= 1)
         {
             return;
         }
