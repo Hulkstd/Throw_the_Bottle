@@ -43,7 +43,7 @@
  
  진우: UI, 맵 양산
  
- 태형: 물병 움직임 구현, UI, Bug Fixer, parsing script구현, 입력 리펙토링, 전채적인 코드 
+ 태형: 물병 움직임 구현, UI, Bug Fixer, parsing script구현, 입력 리펙토링, 전채적인 코드, 튜토리얼 UI 및 animation, 드래그 선 제작
  
  승걸: 입력(드래그)
  
