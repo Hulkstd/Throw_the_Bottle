@@ -1049,12 +1049,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-<<<<<<< HEAD
-  - {fileID: 337472848}
-=======
   - {fileID: 1268497374}
   - {fileID: 1230945522}
->>>>>>> 88514db6df9547c51faedded6107ed4d52fef9cb
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1486,9 +1482,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137909075}
   m_CullTransparentMesh: 0
-<<<<<<< HEAD
---- !u!4 &1268497374
-=======
 --- !u!1 &1230945521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,7 +1562,6 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1268497374 stripped
->>>>>>> 88514db6df9547c51faedded6107ed4d52fef9cb
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3100216084196219045, guid: dcb315a4b987fd040b9bf6d157040439,
