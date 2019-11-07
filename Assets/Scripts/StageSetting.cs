@@ -41,14 +41,17 @@ public class StageSetting : MonoBehaviour
 
         for (int j = 0; j < Count; ++j)
         {
-            Contents.Add(Instantiate(new GameObject().AddComponent<RectTransform>(), Content));
+            RectTransform transform = new GameObject().AddComponent<RectTransform>();
+            transform.SetParent(Content);
+            Contents.Add(transform);
             if (j > 0)
                 Contents[j].anchoredPosition = Contents[j - 1].anchoredPosition + new Vector2(1100, 0);
             else
                 Contents[j].anchoredPosition = new Vector2(-1667, 0);
             Contents[j].sizeDelta = new Vector2(1100, 1800);
             Contents[j].name = "Content";
-            PivotObj = Instantiate(new GameObject().AddComponent<RectTransform>(), Contents[j]);
+            PivotObj = new GameObject().AddComponent<RectTransform>();
+            PivotObj.SetParent(Contents[j]);
             PivotObj.anchoredPosition = new Vector2(-550, 900);
             PivotObj.name = "PivotObj";
         }

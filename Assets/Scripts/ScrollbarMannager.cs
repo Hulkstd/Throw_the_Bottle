@@ -24,6 +24,7 @@ public class ScrollbarMannager : MonoBehaviour
         IsScroll = true;
         Value = 1f / (StageSetting.ContentsCount - 1);
         IncreaseValue = Value / 10;
+        Debug.Log("value is " + IncreaseValue);
     }
 
     private void Update()
@@ -65,14 +66,15 @@ public class ScrollbarMannager : MonoBehaviour
 
         Debug.Log("Do Coroutine  target : " + TargetValue);
 
-        while (Scrollbar.value != TargetValue) {
+        while (Scrollbar.value != TargetValue)
+        {
             IsIncrease = TargetValue > Scrollbar.value ? true : false;
             if (Mathf.Abs(TargetValue - Scrollbar.value) < IncreaseValue)
             {
                 Scrollbar.value = TargetValue;
                 break;
             }
-            Scrollbar.value += IsIncrease ? IncreaseValue : -IncreaseValue;
+            Scrollbar.value += IsIncrease ? (TargetValue - Scrollbar.value) / 2 : -(Scrollbar.value - TargetValue) / 2;
             yield return new WaitForSeconds(0.025f);
         }
 

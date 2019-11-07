@@ -79,7 +79,7 @@ public class ParsingMap : MonoBehaviour
         string[] lines = textasset.text.Split('\n');
         int n = int.Parse(lines[0]);
 
-        GameObject gameObject = Instantiate(new GameObject());
+        GameObject gameObject = new GameObject();
         EscapeBotten es = gameObject.AddComponent<EscapeBotten>();
         es.NowStage = "Stage";
         
