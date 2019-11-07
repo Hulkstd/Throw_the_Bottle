@@ -5,6 +5,7 @@ using UnityEngine;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
 using UnityEngine.Monetization;
+using UnityEngine.Advertisements;
 
 public class UnityAdsHelper : MonoBehaviour
 {
@@ -64,6 +65,11 @@ public class UnityAdsHelper : MonoBehaviour
         {
             Monetization.Initialize(game_id, false);
         }
+        if(Advertisement.isSupported)
+        {
+            Advertisement.Initialize(game_id, false);
+            Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+        }
     }
 
     public void ShowRewardedAd()
@@ -114,11 +120,11 @@ public class UnityAdsHelper : MonoBehaviour
         }
     }
 
-    private void HandleShowResult(ShowResult result)
+    private void HandleShowResult(UnityEngine.Advertisements.ShowResult result)
     {
         switch (result)
         {
-            case ShowResult.Finished:
+            case UnityEngine.Advertisements.ShowResult.Finished:
                 {
                     Debug.Log("The ad was successfully shown.");
 
@@ -127,7 +133,7 @@ public class UnityAdsHelper : MonoBehaviour
                 }
                 break;
 
-            case ShowResult.Skipped:
+            case UnityEngine.Advertisements.ShowResult.Skipped:
                 {
                     Debug.Log("The ad was skipped before reaching the end.");
 
@@ -136,7 +142,7 @@ public class UnityAdsHelper : MonoBehaviour
                 }
                 break;
 
-            case ShowResult.Failed:
+            case UnityEngine.Advertisements.ShowResult.Failed:
                 {
                     Debug.LogError("The ad failed to be shown.");
 
@@ -172,23 +178,13 @@ public class UnityAdsHelper : MonoBehaviour
     IEnumerator ShowBannerWhenReady()
     {
         Debug.Log("Banner NotReady");
-        while (!Monetization.IsReady(banner_id))
+        while (!Advertisement.IsReady(banner_id))
         {
             yield return new WaitForSeconds(0.5f);
         }
         Debug.Log("Banner Ready");
         BannerEnd = false;
 
-        ShowAdPlacementContent ad = null;
-        ad = Monetization.GetPlacementContent(banner_id) as ShowAdPlacementContent;
-
-        if (ad != null)
-        {
-            ad.Show((ShowResult result) => 
-            {
-                BannerEnd = true;
-                Debug.Log("Banner Off");
-            });
-        }
+        Advertisement.Banner.Show(banner_id, new BannerOptions() { hideCallback = () => { BannerEnd = true; } });
     }
 }
